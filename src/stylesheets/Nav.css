@@ -1,0 +1,42 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    color: var(--white);
+}
+.nav__img {
+    height: 3.5rem;
+}
+
+.nav__language-container {
+    display: flex;
+    align-items: end;
+}
+.nav__p.selected {
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 2.7rem;
+}
+
+.nav__span{
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 2.5rem;
+    margin: 0 .6rem;
+}
+.nav__p {
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 2.5rem;
+    transition: font-size .2s ease-in-out
+}
+.nav__p:hover{
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 2.7rem;
+}
+.nav__icon{
+    font-size: 3.5rem;
+}

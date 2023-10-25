@@ -1,0 +1,22 @@
+:root{
+  --background-color: #000;
+  --text-main-color: #FFFFFF;
+  --text-secondary: #8C8C8C;
+  --white: #EDEDED;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+/* body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */

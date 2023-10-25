@@ -1,0 +1,69 @@
+.title-container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.welcome__img--title-container{
+    width: 90%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.welcome__h1--title-container{
+    height: min-content;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 15rem;
+    font-weight: 400;
+    width: 100%;
+    text-wrap: nowrap;
+    color: var(--white);
+}
+
+.roles{
+    display: flex;
+    width: 100%;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.roles__p{
+    flex: 1;
+}
+
+button{
+    cursor: pointer;
+    font-size: 1.6rem;
+    appearance: none;
+    background-color: transparent;
+    padding: 1.3rem 2.6rem;
+    border: 2px solid var(--text-secondary);
+    border-radius: 10rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out;
+}
+
+.button-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+button:hover{
+    border-color: var(--white);
+    background-color: var(--white);
+    color: var(--background-color);
+}
