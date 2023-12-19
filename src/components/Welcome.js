@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import "stylesheets/Welcome.css";
 import profile from "imgs/profile.png";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/all";
 import { horizontalLoop } from "hooks/horizontalLoop";
 import { useTranslation } from "react-i18next";
 

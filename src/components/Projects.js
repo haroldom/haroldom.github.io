@@ -6,7 +6,7 @@ import project4 from "imgs/project4.jpg";
 import project5 from "imgs/project5.jpg";
 import "stylesheets/Projects.css";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/all";
 import { Icon } from "@iconify/react";
 import SplitType from "split-type";
 import { useTranslation } from "react-i18next";

@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,10 +58,10 @@ const About = () => {
         var tl = gsap.timeline()
         tl.to(words, {
             scrollTrigger: {
+                trigger: aboutContentContainer.current,
                 start: 'top 90%',
                 end: 'top 70%',
                 scrub: true,
-                trigger: aboutContentContainer.current,
             },
             y: 0,
             stagger: 0.1,
