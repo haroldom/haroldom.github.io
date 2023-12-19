@@ -13,6 +13,7 @@
 }
 
 html{
+  user-select: none;
   font-size: 62.5%;
 }
 

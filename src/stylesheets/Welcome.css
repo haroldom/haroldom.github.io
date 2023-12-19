@@ -1,6 +1,11 @@
-.title-container{
+.welcome{
+    height: calc(100vh - 7.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title-container {
     position: relative;
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,26 +13,42 @@
     overflow-x: hidden;
 }
 
-.welcome__img--title-container{
+.title-bottom{
+    padding: 3rem;
+}
+
+.welcome__img--title-container {
     width: 90%;
     height: 70vh;
     object-fit: cover;
+    overflow: hidden;
+    object-position: top;
 }
 
-.welcome__h1--title-container{
-    height: min-content;
+.title-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
     position: absolute;
+    left: 0;
     top: 0;
     bottom: 0;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+}
+
+.welcome__h1--title-container {
+    height: min-content;
     font-size: 15rem;
     font-weight: 400;
-    width: 100%;
+    width: max-content;
     text-wrap: nowrap;
     color: var(--white);
 }
 
-.roles{
+.roles {
     display: flex;
     width: 100%;
     font-size: 1.6rem;
@@ -35,15 +56,18 @@
     color: var(--text-secondary);
     justify-content: center;
     gap: 3rem;
-    padding: 3rem;
+    margin-bottom: 3rem;
     text-align: center;
 }
 
-.roles__p{
+.roles__p {
+    word-spacing: .5rem;
     flex: 1;
 }
 
-button{
+.button {
+    text-decoration: none;
+    height: min-content;
     cursor: pointer;
     font-size: 1.6rem;
     appearance: none;
@@ -56,14 +80,71 @@ button{
     transition: background-color .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out;
 }
 
-.button-container{
+.button-container {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-button:hover{
+.button:hover {
     border-color: var(--white);
     background-color: var(--white);
     color: var(--background-color);
+}
+
+@media screen and (min-width: 720px) {
+    .welcome{
+        justify-content: flex-end;
+    }
+
+    .title-container{
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        margin: auto;
+        justify-content: center;
+        z-index: -1;
+    }
+    .welcome__img--title-container{
+        height: 50rem;
+        width: 40%;
+        max-width: 35rem;
+        z-index: 1;
+    }
+    .welcome__h1--title-container{
+        font-size: 35rem;
+    }
+    .title-bottom{
+        padding: 6rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .roles__p{
+        flex: none;
+    }
+    .roles{
+        padding: 0;
+        width: auto;
+    }
+    .button-container{
+        width: auto;
+    }
+    
+}
+
+@media screen and (min-width: 900px) {
+    .title-bottom{
+        padding: 6rem;
+    }
+}
+
+@media screen and (min-width: 720px) and (max-height: 760px){
+    .welcome__h1--title-container{
+        font-size: 25rem;
+    }
+    .welcome__img--title-container{
+        height: 50%;
+        object-position: top;
+    }
 }

@@ -1,3 +1,18 @@
+.projects__h2-container{
+    height: 50rem;
+    padding-left: 40%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.projects__h2{
+    width: max-content;
+    color: var(--white);
+    font-size: 30rem;
+    font-weight: 500;
+}
+
+
 .projects_section {
     display: flex;
     flex: none;
@@ -43,6 +58,7 @@
     padding-top: 150px;
 }
 .project__img {
+    filter: brightness(.85);
     position: relative;
     height: 90vh;
     width: 100%;
@@ -68,7 +84,6 @@
 .project__title{
     height: 90vh;
     width: 100%;
-    /* background-color: rgba(241, 241, 241, 0.119); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,8 +92,9 @@
 
 .project__title-h3{
     text-align: center;
-    font-size: 15rem;
-    color: var(--white);
+    font-size: 8rem;
+    color: #fff;
+    margin-bottom: 2rem;
 }
 
 .project__title-button{
@@ -169,5 +185,15 @@
     }
     .project__title-button .icon{
         font-size: 3.5rem;
+    }
+}
+
+@media screen and (min-width: 720px){
+    .projects__h2{
+        font-size: 45rem;
+        padding-left: 3rem;
+    }
+    .projects__h2-container{
+        height: min-content;
     }
 }

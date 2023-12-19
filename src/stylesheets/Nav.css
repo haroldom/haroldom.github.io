@@ -3,40 +3,233 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
+    height: 7.5rem;
     color: var(--white);
 }
+
 .nav__img {
     height: 3.5rem;
 }
 
-.nav__language-container {
-    display: flex;
-    align-items: end;
-}
-.nav__p.selected {
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 2.7rem;
+
+/* LANGUAGE DROPDOWN */
+.language-dropdown {
+    position: relative;
+    width: 15rem;
 }
 
-.nav__span{
-    font-size: 1.6rem;
-    font-weight: 300;
-    line-height: 2.5rem;
-    margin: 0 .6rem;
-}
-.nav__p {
+.language-dropdown .selection {
+    background-color: transparent;
+    padding: 1.6rem;
+    user-select: none;
     cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 300;
-    line-height: 2.5rem;
-    transition: font-size .2s ease-in-out
+    display: flex;
+    gap: 1rem;
+    font-size: 1.4rem;
+    justify-content: space-between;
+    align-items: center;
 }
-.nav__p:hover{
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 2.7rem;
+
+.language-dropdown .selection .icon {
+    font-size: 2rem;
 }
-.nav__icon{
-    font-size: 3.5rem;
+
+
+.language-dropdown .selection .caret {
+    width: 0;
+    height: 0;
+    border-left: .5rem solid transparent;
+    border-right: .5rem solid transparent;
+    border-top: .6rem solid #fff;
+    transition: .3s;
+}
+
+.language-dropdown .selection .caret.active {
+    transform: rotate(180deg);
+}
+
+.menu-container {
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.menu {
+    transform: translateY(-100%);
+    list-style: none;
+    background-color: #fff;
+    color: var(--background-color);
+    transition: transform .2s ease-in-out;
+}
+
+.menu.active {
+    transform: translateY(0);
+}
+
+.menu .option {
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.menu .option:hover {
+    color: #fff;
+    background-color: var(--background-color);
+}
+
+.nav__icon {
+    cursor: pointer;
+}
+
+.hamburger path {
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+}
+
+.menu-icon {
+    position: relative;
+    z-index: 101;
+    cursor: pointer;
+}
+
+/* fullpage menu */
+.fullpage-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+}
+
+.fullpage-menu-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 10rem 6rem;
+}
+
+.menu-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.menu-bg span {
+    height: 33.334%;
+    width: 100%;
+    background: #fff;
+    display: block;
+}
+
+.fullpage-menu nav {
+    position: relative;
+    z-index: 10;
+}
+
+.fullpage-menu nav ul {
+    list-style: none;
+}
+
+.fullpage-menu nav li {
+    overflow: hidden;
+    transition: transform .3s ease-in-out 0s;
+}
+
+.fullpage-menu nav li+li {
+    margin-top: 2rem;
+}
+
+.fullpage-menu nav li a {
+    font-size: 10rem;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 1;
+}
+
+.fullpage-menu nav li:hover {
+    transform: translateX(5rem);
+}
+
+.header-nav-footer {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 6rem;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.social-links li {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #000;
+}
+
+.social-links li+li {
+    margin-left: 1.6rem;
+}
+
+.social-links li:last-child {
+    margin-left: auto;
+}
+
+.social-links a {
+    color: #000;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 720px) {
+    .nav {
+        padding: 2rem 4rem;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .nav {
+        padding: 4rem 6rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .header-row,
+    .header-nav-footer {
+        padding: 3rem;
+    }
+
+    .fullpage-menu-inner {
+        padding: 7rem 3rem;
+    }
+
+    .fullpage-menu nav li a {
+        font-size: 5.4rem;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+    }
+
+    .social-links li {
+        font-size: 1.6rem;
+    }
 }

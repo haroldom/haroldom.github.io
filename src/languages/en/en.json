@@ -1,0 +1,40 @@
+{
+    "nav": {
+        "li-1": "HOME",
+        "li-2": "ABOUT",
+        "li-3": "PROJECTS",
+        "li-4": "CONTACT"
+    },
+    "welcome": {
+        "languages": {
+            "li-1": "Spanish",
+            "li-2": "English"
+        },
+        "rol-1": "WEB DESIGNER",
+        "rol-2": "FRONTEND DEVELOPER",
+        "btn-1": "CONNECT WITH ME"
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "Hello everybody",
+        "p-1": "With an innate talent for unique and challenging problem solving, handled with an unmatched creativity.",
+        "p-2": "Peruvian Web developer, making interactive and elegant designs. Prioritizing the user experience in each project",
+        "p-3": "As a web developer passionate about design and user experience, I specialize in front-end development, creating new concepts to show a unique identity in my work.",
+        "p-4": "When I'm not in front of the computer I'm playing piano, guitar, soccer or dancing Marinera (Peruvian dance)."
+    },
+    "projects": {
+        "title": "PROJECTS"
+    },
+    "skills": {
+        "title": "Updated with industry standard technologies",
+        "subtitle": "Always learning something new",
+        "h3": "ORDINARY SKILLS",
+        "btn-text": "Get my résumé",
+        "quote": "Don't be upset when people reject you. Nice things are rejected all the time by people who can't afford them.",
+        "quote-title": "Today's quote"
+    },
+    "footer": {
+        "title": "START A PROJECT",
+        "p": "Just feel free to contact if you wanna collaborate with me or simply have a conversation."
+    }
+}
