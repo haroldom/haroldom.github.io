@@ -8,6 +8,10 @@ import gsap from "gsap";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 let splitTypesInstances = []
 

@@ -1,10 +1,14 @@
 import { Icon } from "@iconify/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import { horizontalLoop } from "hooks/horizontalLoop";
 import React, { useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import "stylesheets/Skills.css";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 const Skills = () => {
     const { t } = useTranslation()
