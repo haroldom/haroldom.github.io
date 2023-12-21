@@ -1,12 +1,11 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import hand from "imgs/waving.png";
+import hand from "imgs/waving.webp";
 import "stylesheets/About.css";
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
 import SplitType from "split-type";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 
 import { ScrollTrigger } from "gsap/all";
 
@@ -104,10 +103,10 @@ const About = () => {
                         </div>
                         <div className="social-links">
 
-                            <a href="https://www.github.com/haroldom" target="_blank"><Icon className="about__icon" icon="bi:github" /></a>
-                            <a href="https://www.twitter.com/sebaasom" target="_blank"><Icon className="about__icon" icon="bi:twitter-x" /></a>
-                            <a href="https://www.linkedin.com/in/haroldom" target="_blank"><Icon className="about__icon" icon="bi:linkedin" /></a>
-                            <a href="https://www.instagram.com/sebaasom" target="_blank"><Icon className="about__icon" icon="bi:instagram" /></a>
+                            <a href="https://www.github.com/haroldom" rel="noreferrer" target="_blank"><Icon className="about__icon" icon="bi:github" /></a>
+                            <a href="https://www.twitter.com/sebaasom" rel="noreferrer" target="_blank"><Icon className="about__icon" icon="bi:twitter-x" /></a>
+                            <a href="https://www.linkedin.com/in/haroldom" rel="noreferrer" target="_blank"><Icon className="about__icon" icon="bi:linkedin" /></a>
+                            <a href="https://www.instagram.com/sebaasom" rel="noreferrer" target="_blank"><Icon className="about__icon" icon="bi:instagram" /></a>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import project1 from "imgs/project1.jpg";
-import project2 from "imgs/project2.jpg";
-import project3 from "imgs/project3.png";
-import project4 from "imgs/project4.jpg";
-import project5 from "imgs/project5.jpg";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import project1 from "imgs/project1.webp";
+import project2 from "imgs/project2.webp";
+import project3 from "imgs/project3.webp";
+import project4 from "imgs/project4.webp";
+import project5 from "imgs/project5.webp";
 import "stylesheets/Projects.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -205,6 +205,7 @@ const Projects = () => {
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[0] = el)}
+                                rel="noreferrer"
                                 target="_blank"
                                 href="https://haroldom.github.io/nam-restaurant/"
                             >
@@ -228,6 +229,7 @@ const Projects = () => {
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[1] = el)}
+                                rel="noreferrer"
                                 target="_blank"
                                 href="https://haroldom.github.io/slg-page/build/"
                             >
@@ -251,6 +253,7 @@ const Projects = () => {
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[2] = el)}
+                                rel="noreferrer"
                                 target="_blank"
                                 href="https://haroldom.github.io/todo-app/"
                             >
@@ -274,6 +277,7 @@ const Projects = () => {
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[3] = el)}
+                                rel="noreferrer"
                                 target="_blank"
                                 href="https://betatreepilot.netlify.app/login"
                             >
@@ -297,6 +301,7 @@ const Projects = () => {
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[4] = el)}
+                                rel="noreferrer"
                                 target="_blank"
                                 href="https://haroldom.github.io/personal-blog/"
                             >

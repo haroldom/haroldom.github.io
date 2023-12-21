@@ -6,20 +6,23 @@ import React, { useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import "stylesheets/Skills.css";
+import cvEs from 'files/cv-es.pdf'
+import cvEn from 'files/cv-en.pdf'
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 const Skills = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const skillTitle = useRef(null)
     const skilLSubtitle = useRef(null)
     const skillContainer = useRef(null)
     const skillCarousel = useRef(null)
 
     const skillsRefs = useRef([]);
+
     useLayoutEffect(() => {
-        const loop = horizontalLoop(skillsRefs.current, {
+        horizontalLoop(skillsRefs.current, {
             repeat: -1,
             paused: false,
             speed: 2,
@@ -59,7 +62,7 @@ const Skills = () => {
             y: 0,
             duration: 1,
         });
-    }, [skillTitle, skillCarousel, skilLSubtitle, skillContainer]);
+    }, [skillTitle, skillCarousel, skilLSubtitle, skillContainer, timeline]);
 
 
     return (
@@ -152,7 +155,7 @@ const Skills = () => {
                             <p className="p">
                                 Figma, Linux, Windows, Adobe Illustrator, Adobe Photoshop, Adobe Premier, After Effects.
                             </p>
-                            <a className="button light">{t('skills.btn-text')}</a>
+                            <a href={i18n.language === 'en' ? cvEn : cvEs} download="Résumé Harold Ormeño" className="button light">{t('skills.btn-text')}</a>
                         </div>
                         <div className="quote-container">
                             <Icon className="icon" icon="radix-icons:quote" />

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import logo from "imgs/logo.png";
+import logo from "imgs/logo.webp";
 import 'stylesheets/Nav.css'
 import gsap, { Power2 } from "gsap";
 import { useLayoutEffect } from "react";
