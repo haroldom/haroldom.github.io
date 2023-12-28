@@ -46,6 +46,7 @@
     width: max-content;
     text-wrap: nowrap;
     color: var(--white);
+    will-change: transform;
 }
 
 .roles {

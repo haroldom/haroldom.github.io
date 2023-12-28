@@ -84,6 +84,7 @@
 }
 
 .project__title{
+    will-change: transform, opacity;
     height: 90vh;
     width: 100%;
     display: flex;
@@ -106,6 +107,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.project__title-button span{
+    will-change: transform, opacity;
 }
 
 .project__title-button .button-normal{
