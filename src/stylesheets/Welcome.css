@@ -18,6 +18,7 @@
 }
 
 .welcome__img--title-container {
+    filter: grayscale(100%) contrast(1.1);
     width: 90%;
     height: 70vh;
     object-fit: cover;

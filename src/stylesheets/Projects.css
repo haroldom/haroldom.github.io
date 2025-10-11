@@ -60,7 +60,7 @@
     padding-top: 150px;
 }
 .project__img {
-    filter: brightness(.85);
+    filter: brightness(.6);
     position: relative;
     height: 90vh;
     width: 100%;
@@ -184,7 +184,7 @@
     }
 
     .project__title-h3{
-        font-size: 20rem;
+        font-size: 15rem;
     }
     .project__title-button{
         width: 7rem;

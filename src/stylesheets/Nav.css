@@ -73,11 +73,29 @@
     text-align: center;
     padding: 1.2rem;
     font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.menu .option .dot-indicator {
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    right: 1.5rem;
 }
 
 .menu .option:hover {
     color: #fff;
     background-color: var(--background-color);
+}
+
+.menu .option:hover .dot-indicator {
+    background-color: #fff;
 }
 
 .nav__icon {

@@ -9,7 +9,7 @@ import en from './languages/en/en.json'
 
 
 i18next.use(initReactI18next).init({
-  lng: "en",
+  lng: "es",
   interpolation: { escapeValue: false },
   resources: {
     es: {
