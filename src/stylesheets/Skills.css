@@ -18,6 +18,7 @@
     border-radius: 7rem;
     padding: 10rem 5rem;
     width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .skills-content__h2 {
@@ -49,6 +50,28 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.skill-carousel-main-container::before,
+.skill-carousel-main-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.skill-carousel-main-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--white) 0%, transparent 100%);
+}
+
+.skill-carousel-main-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--white) 0%, transparent 100%);
 }
 
 .skill-carousel {
@@ -74,13 +97,17 @@
     gap: 1rem;
 }
 
+
 .skills-container__item-name {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .skills-container__item-icon {
-    font-size: 4rem;
+    font-size: 5rem;
+    transition: color 0.3s ease;
 }
 
 .skills-content .h3,
@@ -111,17 +138,23 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+    padding: 3rem;
+    border-radius: 2rem;
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
 }
 
 
 .ordinary-skills p {
     max-width: 40rem;
     text-align: center;
+    color: #333;
 }
 
 .ordinary-skills .h3 {
     line-height: 4rem;
     margin-bottom: 2rem;
+    font-weight: 600;
 }
 
 .quote-container {
@@ -130,11 +163,31 @@
     align-items: center;
     flex-direction: column;
     flex: 1;
+    padding: 3rem;
+    border-radius: 2rem;
+    background-color: var(--background-color);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .quote-container .icon {
     font-size: 4rem;
     margin-bottom: 2rem;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
 }
 
 .quote-container__quote {
@@ -143,13 +196,19 @@
     text-align: center;
     margin-bottom: 2rem;
     line-height: 3rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
 }
 
 .quote-container__title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     text-align: center;
     padding: .6em;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    position: relative;
+    z-index: 1;
 }
 
 @media screen and (min-width: 900px) {

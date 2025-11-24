@@ -114,7 +114,7 @@ const Nav = () => {
                             <li><a target="_blank" rel="noreferrer" href="https://www.github.com/haroldom">Github</a></li>
                             <li><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/haroldom">Linkedin</a></li>
                             <li><a target="_blank" rel="noreferrer" href="https://www.twitter.com/sebaasom">Twitter</a></li>
-                            <li>&copy;2023</li>
+                            <li>&copy;2025</li>
                         </ul>
                     </div>
                 </div>

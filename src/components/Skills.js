@@ -146,6 +146,34 @@ const Skills = () => {
                                     />
                                     <p className="skills-container__item-name">Git</p>
                                 </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[9] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:nodedotjs"
+                                    />
+                                    <p className="skills-container__item-name">Node.js</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[10] = el}>
+                                    <Icon
+                                        className="skills-container__item-iconpm"
+                                        icon="simple-icons:mysql"
+                                    />
+                                    <p className="skills-container__item-name">MySQL</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[11] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:docker"
+                                    />
+                                    <p className="skills-container__item-name">Docker</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[12] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:fastapi"
+                                    />
+                                    <p className="skills-container__item-name">FastAPI</p>
+                                </div>
                             </div>
                         </div>
                     </div>
