@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Icon } from "@iconify/react";
 import { useTranslation } from 'react-i18next';
 
 const LanguageChanger = () => {
-    const { t, i18n } = useTranslation()
-
-    const getInitialLanguage = () => {
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage) {
-            return savedLanguage === 'es' ? 'Spanish' : 'English';
-        }
-        return i18n.language === 'es' ? 'Spanish' : 'English';
-    };
+    const { i18n } = useTranslation()
 
     const [showDropMenu, setShowDropMenu] = useState(false);
-    const [languageSelected, setLanguageSelected] = useState(getInitialLanguage());
-
-    useEffect(() => {
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage) {
-            i18n.changeLanguage(savedLanguage);
-            setLanguageSelected(savedLanguage === 'es' ? 'Spanish' : 'English');
-        }
-    }, [i18n]);
+    const [languageSelected, setLanguageSelected] = useState(
+        i18n.language === 'en' ? 'English' : 'Spanish'
+    );
 
     const handleDropDownClick = () => {
         setShowDropMenu(!showDropMenu)

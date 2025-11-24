@@ -155,7 +155,7 @@ const Skills = () => {
                                 </div>
                                 <div className="skills-container__item" ref={el => skillsRefs.current[10] = el}>
                                     <Icon
-                                        className="skills-container__item-iconpm"
+                                        className="skills-container__item-icon"
                                         icon="simple-icons:mysql"
                                     />
                                     <p className="skills-container__item-name">MySQL</p>
@@ -173,6 +173,34 @@ const Skills = () => {
                                         icon="simple-icons:fastapi"
                                     />
                                     <p className="skills-container__item-name">FastAPI</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[13] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:mongodb"
+                                    />
+                                    <p className="skills-container__item-name">MongoDB</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[14] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:tailwindcss"
+                                    />
+                                    <p className="skills-container__item-name">Tailwind</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[15] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:googlecloud"
+                                    />
+                                    <p className="skills-container__item-name">Google Cloud</p>
+                                </div>
+                                <div className="skills-container__item" ref={el => skillsRefs.current[16] = el}>
+                                    <Icon
+                                        className="skills-container__item-icon"
+                                        icon="simple-icons:claude"
+                                    />
+                                    <p className="skills-container__item-name">Claude AI</p>
                                 </div>
                             </div>
                         </div>
