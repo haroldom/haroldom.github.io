@@ -297,13 +297,13 @@ const Projects = () => {
                             className="project__title"
                             ref={(el) => (titlesRefs.current[4] = el)}
                         >
-                            <h3 className="project__title-h3">Blog</h3>
+                            <h3 className="project__title-h3">Collie App</h3>
                             <a
                                 className="project__title-button"
                                 ref={(el) => (buttonsRefs.current[4] = el)}
                                 rel="noreferrer"
                                 target="_blank"
-                                href="https://haroldom.github.io/personal-blog/"
+                                href="https://www.linkedin.com/posts/haroldom_un-recap-de-lo-que-viv%C3%AD-en-la-%F0%9D%97%98%F0%9D%98%85%F0%9D%97%BD%F0%9D%97%BC%F0%9D%97%AE%F0%9D%97%B9%F0%9D%97%B6%F0%9D%97%BA%F0%9D%97%B2%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%AE%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%AE-activity-7379686511472058368-QwyD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEhj8zoBiDNLFlO8_cOIXuVfhYrO0-Z5sQE"
                             >
                                 <span className="button-normal"></span>
                                 <span className="button-hover"></span>
