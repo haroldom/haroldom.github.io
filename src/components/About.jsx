@@ -88,7 +88,7 @@ const About = () => {
             <div className="about">
                 <p className="about__p--hello">
                     {t("about.subtitle")}{" "}
-                    <img className="about__p-img" src={hand} alt="" />
+                    <img className="about__p-img" src={hand?.src ?? hand} alt="" />
                 </p>
                 <h2 className="about__h2">{t("about.title")}</h2>
                 <div className="about__content-container">

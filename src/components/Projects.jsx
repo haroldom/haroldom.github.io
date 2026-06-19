@@ -164,31 +164,31 @@ const Projects = () => {
                     <div className="projects-images">
                         <img
                             ref={(el) => (imagesRefs.current[0] = el)}
-                            src={project1}
+                            src={project1?.src ?? project1}
                             alt=""
                             className="project__img"
                         />
                         <img
                             ref={(el) => (imagesRefs.current[1] = el)}
-                            src={project2}
+                            src={project2?.src ?? project2}
                             alt=""
                             className="project__img"
                         />
                         <img
                             ref={(el) => (imagesRefs.current[2] = el)}
-                            src={project3}
+                            src={project3?.src ?? project3}
                             alt=""
                             className="project__img"
                         />
                         <img
                             ref={(el) => (imagesRefs.current[3] = el)}
-                            src={project4}
+                            src={project4?.src ?? project4}
                             alt=""
                             className="project__img"
                         />
                         <img
                             ref={(el) => (imagesRefs.current[4] = el)}
-                            src={project5}
+                            src={project5?.src ?? project5}
                             alt=""
                             className="project__img"
                         />

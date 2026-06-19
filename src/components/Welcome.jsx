@@ -59,7 +59,7 @@ const Welcome = () => {
                 <img
                     ref={profileImgRef}
                     className="welcome__img--title-container"
-                    src={profile}
+                    src={profile?.src ?? profile}
                     alt=""
                 />
                 <div className="title-scroll-container">

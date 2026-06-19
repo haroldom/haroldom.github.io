@@ -83,7 +83,7 @@ const Nav = () => {
     return (
         <>
             <div className="nav">
-                <img className="nav__img" src={logo} alt="" />
+                <img className="nav__img" src={logo?.src ?? logo} alt="" />
                 <LanguageChanger />
                 <div className="menu-icon" onClick={handleMenuBarClick}>
                     <svg viewBox="0 0 12 10" ref={menuBarContainer} className="hamburger" height="25px" width="25px">
