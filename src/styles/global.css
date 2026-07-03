@@ -1,69 +1,21 @@
 /* ============================================
    FONTS — self-hosted from /public/fonts/
-   Display serif: Zodiak · Sans: Satoshi
-   (both Fontshare, free license)
+   Display serif: Fraunces (variable, optical) · Sans: Satoshi
+   (Fraunces = OFL / Google Fonts, Satoshi = Fontshare, free license)
    ============================================ */
 
 @font-face {
-  font-family: 'Gambetta';
-  src: url('/fonts/Gambetta-Light.woff2') format('woff2');
-  font-weight: 300;
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-Variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gambetta';
-  src: url('/fonts/Gambetta-LightItalic.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gambetta';
-  src: url('/fonts/Gambetta-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gambetta';
-  src: url('/fonts/Gambetta-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/Zodiak-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/Zodiak-LightItalic.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/Zodiak-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Zodiak';
-  src: url('/fonts/Zodiak-Italic.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-VariableItalic.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
@@ -109,7 +61,7 @@
   --c-accent: #da7756; /* clawd orange */
 
   /* type */
-  --f-serif: 'Gambetta', 'Times New Roman', Georgia, serif;
+  --f-serif: 'Fraunces', 'Times New Roman', Georgia, serif;
   --f-sans: 'Satoshi', -apple-system, 'Helvetica Neue', Arial, sans-serif;
 
   /* fluid display scale */

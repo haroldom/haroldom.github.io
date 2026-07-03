@@ -53,16 +53,10 @@ const projects = [
               data-tilt={i % 2 === 0 ? -7 : 7}
             >
               <a class="projects__link" href={p.href}>
-                <svg
-                  class="projects__arrow"
-                  width="42"
-                  height="16"
-                  viewBox="0 0 42 16"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path d="M0 8h40M33 1.5 40.5 8 33 14.5" stroke="currentColor" stroke-width="1.4"></path>
+                <svg class="projects__arrow" width="70" height="41" viewBox="0 0 70 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M46.6667 0C46.6667 2.16417 48.8046 5.39583 50.9687 8.10833C53.7512 11.6083 57.0762 14.6621 60.8883 16.9925C63.7467 18.7396 67.2117 20.4167 70 20.4167M70 20.4167C67.2117 20.4167 63.7437 22.0937 60.8883 23.8408C57.0762 26.1742 53.7512 29.2279 50.9687 32.7221C48.8046 35.4375 46.6667 38.675 46.6667 40.8333M70 20.4167H-1.90735e-06" stroke="white"/>
                 </svg>
+
                 <span class="projects__name serif">{p.title}</span>
               </a>
               <p class="projects__meta small muted">{p.meta}</p>

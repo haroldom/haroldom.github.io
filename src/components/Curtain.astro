@@ -10,19 +10,30 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<!-- zoom-through-media transition: the word flies past the camera while
-     the tilted media card straightens, grows to fullscreen and dims into
-     the black of the next section -->
+<!-- monumental type transition: the word fills the viewport edge to edge
+     (same treatment as the hero name), a work card floats behind it, and
+     the camera dives through the full stop into the black of Services -->
 <section class="curtain">
   <div class="curtain__sticky">
-    <div class="curtain__card ph-media">
+    <div class="curtain__card ph-media" aria-hidden="true">
       <img src="/images/project5.webp" alt="" width="1600" height="900" loading="lazy" />
     </div>
 
-    <p class="curtain__word serif-italic" aria-hidden="true">{t('curtain.word')}.</p>
-    <p class="curtain__sr">{t('curtain.word')}</p>
+    <svg
+      class="curtain__svg"
+      viewBox="0 0 1440 720"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+    >
+      <g class="curtain__word-g">
+        <text class="curtain__text" x="700" y="460" text-anchor="middle">
+          {t('curtain.word')}
+        </text>
+        <circle class="curtain__dot" cx="0" cy="0" r="18"></circle>
+      </g>
+    </svg>
 
-    <div class="curtain__shade" aria-hidden="true"></div>
+    <p class="curtain__sr">{t('curtain.word')}</p>
   </div>
 </section>
 
@@ -39,19 +50,20 @@ const t = useTranslations(lang);
     top: 0;
     height: 100svh;
     overflow: clip;
-    display: grid;
-    place-items: center;
     background: var(--c-paper);
   }
 
+  /* work card floating behind the type — the projects motif */
   .curtain__card {
-    grid-area: 1 / 1;
-    width: min(38vw, 560px);
+    position: absolute;
+    right: 10%;
+    top: 16%;
+    width: min(26vw, 400px);
     aspect-ratio: 16 / 10;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
-    z-index: 1;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+    z-index: 0;
     will-change: transform;
   }
 
@@ -61,27 +73,25 @@ const t = useTranslations(lang);
     object-fit: cover;
   }
 
-  /* the word sits over both paper and card — exclusion blend keeps it
-     legible on each: dark over the paper, light over the media */
-  .curtain__word {
-    grid-area: 1 / 1;
-    z-index: 2;
-    font-size: clamp(5rem, 13vw, 12rem);
-    line-height: 1;
-    color: #fff;
-    mix-blend-mode: exclusion;
-    pointer-events: none;
-    white-space: nowrap;
-    will-change: transform, opacity;
-  }
-
-  .curtain__shade {
+  .curtain__svg {
     position: absolute;
     inset: 0;
-    background: var(--c-black);
-    opacity: 0;
-    z-index: 3;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .curtain__text {
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    fill: var(--c-black);
+    font-size: 300px; /* resized at runtime to span the full width */
+  }
+
+  .curtain__dot {
+    fill: var(--c-black);
   }
 
   .curtain__sr {
@@ -90,12 +100,6 @@ const t = useTranslations(lang);
     height: 1px;
     overflow: hidden;
     clip-path: inset(50%);
-  }
-
-  @media (max-width: 720px) {
-    .curtain__card {
-      width: 74vw;
-    }
   }
 
   /* with reduced motion the beat adds nothing — skip it entirely */
@@ -113,18 +117,31 @@ const t = useTranslations(lang);
     if (reducedMotion) return;
 
     const section = document.querySelector<HTMLElement>('.curtain');
+    const svg = document.querySelector<SVGSVGElement>('.curtain__svg');
+    const wordG = document.querySelector<SVGGElement>('.curtain__word-g');
+    const text = document.querySelector<SVGTextElement>('.curtain__text');
+    const dot = document.querySelector<SVGCircleElement>('.curtain__dot');
     const card = document.querySelector<HTMLElement>('.curtain__card');
-    const img = card?.querySelector('img');
-    const word = document.querySelector<HTMLElement>('.curtain__word');
-    const shade = document.querySelector<HTMLElement>('.curtain__shade');
-    if (!section || !card || !img || !word || !shade) return;
+    if (!section || !svg || !wordG || !text || !dot || !card) return;
 
-    // scale needed for the card to cover the whole viewport
-    const coverScale = () =>
-      Math.max(
-        window.innerWidth / card.offsetWidth,
-        window.innerHeight / card.offsetHeight
-      ) * 1.04;
+    /* size the word so word + full stop span the viewBox edge to edge
+       (fonts are loaded here, so measurements are exact) */
+    const r = 18;
+    const dotAdvance = 30 + r * 2; // gap + dot width
+    const probe = text.getBBox();
+    const fs = Math.min(440, (300 * (1420 - dotAdvance)) / probe.width);
+    text.setAttribute('font-size', String(fs));
+    text.setAttribute('x', String(720 - dotAdvance / 2));
+    text.setAttribute('y', String(360 + fs * 0.33));
+
+    const bbox = text.getBBox();
+    const cx = bbox.x + bbox.width + 30 + r;
+    const cy = 360 + fs * 0.33 - r;
+    dot.setAttribute('cx', String(cx));
+    dot.setAttribute('cy', String(cy));
+
+    // final window: fully inside the full stop
+    const finalView = `${cx - 12} ${cy - 12} 24 24`;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -132,33 +149,35 @@ const t = useTranslations(lang);
         start: 'top top',
         end: 'bottom bottom',
         scrub: true,
-        invalidateOnRefresh: true,
       },
     });
 
-    /* the word flies past the camera */
+    /* the word settles into place */
     tl.fromTo(
-      word,
-      { scale: 1, opacity: 1 },
-      { scale: 7, opacity: 0, duration: 0.5, ease: 'power2.in' },
-      0.06
+      wordG,
+      { y: 44, transformOrigin: '50% 50%' },
+      { y: 0, duration: 0.12, ease: 'power2.out' },
+      0
     );
 
-    /* the card straightens and grows until it fills the screen */
+    /* the work card drifts slowly behind the type (depth) and tilts */
     tl.fromTo(
       card,
-      { rotation: -6, scale: 1 },
-      { rotation: 0, scale: coverScale, duration: 0.72, ease: 'power2.inOut' },
-      0.08
+      { rotation: -9, y: 30 },
+      { rotation: -4, y: -60, duration: 0.7, ease: 'none' },
+      0
     );
 
-    /* subtle counter-zoom inside the media for depth */
-    tl.fromTo(img, { scale: 1.18 }, { scale: 1, duration: 0.72, ease: 'none' }, 0.08);
-
-    /* lights dim — fullscreen media fades into the section's black */
-    tl.to(shade, { opacity: 1, duration: 0.17, ease: 'none' }, 0.8);
+    /* accelerating vector dive through the full stop — the ink swallows
+       the screen and lands on the black of the next section */
+    tl.fromTo(
+      svg,
+      { attr: { viewBox: '0 0 1440 720' } },
+      { attr: { viewBox: finalView }, duration: 0.83, ease: 'power2.in' },
+      0.12
+    );
 
     /* short hold on black before the release into Services */
-    tl.to({}, { duration: 0.03 }, 0.97);
+    tl.to({}, { duration: 0.05 }, 0.95);
   });
 </script>
