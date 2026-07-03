@@ -1,0 +1,258 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// REPLACE: real project links
+const projects = [
+  {
+    title: 'Orange Logistics',
+    meta: 'Modern Website & Design',
+    href: '#',
+    preview: '/images/project1.webp',
+  },
+  {
+    title: 'Collie Valley',
+    meta: 'Brand & Website',
+    href: '#',
+    preview: '/images/project2.webp',
+  },
+  {
+    title: 'Nam',
+    meta: 'E-commerce Experience',
+    href: '#',
+    preview: '/images/project3.webp',
+  },
+  {
+    title: 'Treepilot',
+    meta: 'Product Website',
+    href: '#',
+    preview: '/images/project4.webp',
+  },
+];
+---
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <p class="label muted projects__label" data-reveal>{t('projects.label')}</p>
+
+    <div class="projects__wrap">
+      <ul class="projects__list">
+        {
+          projects.map((p, i) => (
+            <li
+              class:list={['projects__item', { 'is-active': i === 0 }]}
+              data-index={i}
+              data-preview={p.preview}
+              data-tilt={i % 2 === 0 ? -7 : 7}
+            >
+              <a class="projects__link" href={p.href}>
+                <svg
+                  class="projects__arrow"
+                  width="42"
+                  height="16"
+                  viewBox="0 0 42 16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path d="M0 8h40M33 1.5 40.5 8 33 14.5" stroke="currentColor" stroke-width="1.4"></path>
+                </svg>
+                <span class="projects__name serif">{p.title}</span>
+              </a>
+              <p class="projects__meta small muted">{p.meta}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- preview stays fixed at the vertical center while the list scrolls -->
+      <div class="projects__stage" aria-hidden="true">
+        <div class="projects__sticky">
+          <div class="projects__card ph-media" data-parallax>
+            <img src={projects[0].preview} alt="" width="1200" height="900" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    background: var(--c-black);
+  }
+
+  .projects__label {
+    margin-bottom: clamp(3rem, 7vh, 5rem);
+  }
+
+  .projects__wrap {
+    display: grid;
+    grid-template-columns: 1.1fr minmax(320px, 44%);
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  /* --- list --- */
+  .projects__item {
+    position: relative;
+    padding-block: clamp(3.5rem, 11vh, 7.5rem);
+  }
+
+  .projects__link {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    position: relative;
+  }
+
+  .projects__arrow {
+    flex-shrink: 0;
+    color: var(--c-white);
+    opacity: 0;
+    transform: translateX(-18px);
+    transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+  }
+
+  .projects__name {
+    font-size: var(--fs-project);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--c-grey-dark);
+    transition: color 0.5s ease;
+  }
+
+  .projects__meta {
+    margin-top: 0.5rem;
+    margin-left: calc(42px + 1.4rem);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.5s ease 0.1s, transform 0.5s var(--ease-out-expo) 0.1s;
+  }
+
+  .projects__item.is-active .projects__arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .projects__item.is-active .projects__name {
+    color: var(--c-white);
+  }
+
+  .projects__item.is-active .projects__meta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- sticky centered preview --- */
+  .projects__stage {
+    height: 100%;
+  }
+
+  .projects__sticky {
+    position: sticky;
+    top: calc(50svh - 13vw);
+  }
+
+  .projects__card {
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    transform: rotate(-7deg);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+    will-change: transform;
+  }
+
+  @media (max-width: 900px) {
+    .projects__wrap {
+      grid-template-columns: 1fr;
+    }
+    .projects__stage {
+      display: none;
+    }
+    .projects__item {
+      padding-block: 1.6rem;
+    }
+    .projects__name {
+      color: var(--c-white);
+    }
+    .projects__meta {
+      opacity: 1;
+      transform: none;
+    }
+    .projects__arrow {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { onReady, gsap } from '../scripts/app';
+
+  onReady(() => {
+    const wrap = document.querySelector<HTMLElement>('.projects__wrap');
+    const items = gsap.utils.toArray<HTMLElement>('.projects__item');
+    const card = document.querySelector<HTMLElement>('.projects__card');
+    const img = card?.querySelector('img');
+    if (!wrap || !items.length || !card || !img) return;
+
+    let active = 0;
+
+    function setActive(index: number) {
+      if (index === active) return;
+      active = index;
+
+      items.forEach((el, i) => el.classList.toggle('is-active', i === index));
+
+      const item = items[index];
+      const src = item.dataset.preview;
+      if (src) img!.src = src;
+
+      // the card never disappears — it only swings left/right
+      gsap.to(card, {
+        rotation: parseFloat(item.dataset.tilt ?? '0'),
+        duration: 0.9,
+        ease: 'expo.out',
+        overwrite: true,
+      });
+    }
+
+    // the whole row — full width, image area included — reacts to hover:
+    // whichever item's vertical band contains the pointer becomes active.
+    // The pointer position is remembered and re-checked on scroll, so rows
+    // sliding under a *still* cursor also trigger the change.
+    let pointerY = -1;
+
+    function hitTest() {
+      if (pointerY < 0) return;
+      for (let i = 0; i < items.length; i++) {
+        const r = items[i].getBoundingClientRect();
+        if (pointerY >= r.top && pointerY <= r.bottom) {
+          setActive(i);
+          return;
+        }
+      }
+    }
+
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        pointerY = e.clientY;
+        hitTest();
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('scroll', hitTest, { passive: true });
+
+    items.forEach((el, i) => {
+      el.addEventListener('focusin', () => setActive(i));
+    });
+  });
+</script>

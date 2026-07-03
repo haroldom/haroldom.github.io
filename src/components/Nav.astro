@@ -1,0 +1,325 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath, languages, defaultLang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const otherLang: Lang = lang === defaultLang ? 'es' : 'en';
+
+const exploreLinks = [
+  { label: t('menu.home'), href: '#top' },
+  { label: t('nav.about'), href: '#about' },
+  { label: t('nav.projects'), href: '#projects' },
+  { label: t('nav.process'), href: '#process' },
+  { label: t('nav.services'), href: '#services' },
+  { label: t('footer.contact'), href: '#contact' },
+];
+
+// REPLACE: real social links
+const followLinks = [
+  { label: 'YouTube', href: 'https://youtube.com/@' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/' },
+  { label: 'Instagram', href: 'https://instagram.com/' },
+];
+---
+
+<!-- glass menu panel, opens above the pill -->
+<div class="menu-panel" id="menu-panel" aria-hidden="true">
+  <div class="menu-panel__col">
+    <p class="label muted">{t('menu.explore')}</p>
+    <ul>
+      {
+        exploreLinks.map((link) => (
+          <li>
+            <a class="menu-panel__link" href={link.href} data-menu-link>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="menu-panel__col">
+    <p class="label muted">{t('menu.follow')}</p>
+    <ul>
+      {
+        followLinks.map((link) => (
+          <li>
+            <a
+              class="menu-panel__link"
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="menu-panel__col">
+    <p class="label muted">{t('menu.touch')}</p>
+    <a class="menu-panel__cta" href="#contact" data-menu-link>
+      {t('nav.bookCall')}
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M2 9h13M10 3.5 15.5 9 10 14.5" stroke="currentColor" stroke-width="1.5"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<nav class="navpill" aria-label="Main">
+  <button
+    class="navpill__item navpill__item--chip"
+    type="button"
+    data-menu-toggle
+    aria-expanded="false"
+    aria-controls="menu-panel"
+  >
+    <svg class="navpill__icon-burger" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+    </svg>
+    <svg class="navpill__icon-close" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="m3 3 10 10M13 3 3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+    </svg>
+    {t('nav.menu')}
+  </button>
+  <a class="navpill__item" href="#about">{t('nav.about')}</a>
+  <a class="navpill__item" href="#projects">{t('nav.projects')}</a>
+  <a class="navpill__item" href="#process">{t('nav.process')}</a>
+  <a class="navpill__item" href="#services">{t('nav.services')}</a>
+  <span class="navpill__divider" aria-hidden="true"></span>
+  <a
+    class="navpill__item navpill__item--lang"
+    href={localizePath('/', otherLang)}
+    title={languages[otherLang]}
+  >
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 5h9M8.5 3v2M11 5c-.8 3.4-3.2 6.3-6.5 8M6 8.5c1.2 2.2 3.2 4 5.5 5M13.5 19l4-9.5 4 9.5M14.8 16h5.4"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+    {t('nav.language')}
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="m2.5 4.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+    </svg>
+  </a>
+</nav>
+
+<style>
+  .navpill {
+    position: fixed;
+    bottom: 1.4rem;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    border-radius: 18px;
+    background: rgba(28, 28, 28, 0.62);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .navpill__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.6em 1em;
+    border-radius: 11px;
+    font-size: 0.9rem;
+    font-weight: 450;
+    color: rgba(235, 233, 229, 0.66);
+    transition: color 0.3s ease, background-color 0.3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .navpill__item:hover {
+    color: var(--c-white);
+  }
+
+  .navpill__item--chip {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--c-white);
+    font-weight: 500;
+  }
+
+  .navpill__item--chip:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .navpill__icon-close {
+    display: none;
+  }
+
+  .navpill__item--chip[aria-expanded='true'] .navpill__icon-burger {
+    display: none;
+  }
+
+  .navpill__item--chip[aria-expanded='true'] .navpill__icon-close {
+    display: block;
+  }
+
+  .navpill__divider {
+    width: 1px;
+    height: 1.5em;
+    background: rgba(255, 255, 255, 0.16);
+    margin-inline: 0.35rem;
+  }
+
+  .navpill__item--lang svg:last-child {
+    opacity: 0.6;
+  }
+
+  /* --- glass menu panel --- */
+  .menu-panel {
+    position: fixed;
+    bottom: 5.4rem;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 89;
+    width: min(720px, calc(100vw - 2rem));
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1.1fr;
+    gap: var(--gutter);
+    padding: 2rem 2.2rem 2.4rem;
+    border-radius: 22px;
+    background: rgba(28, 28, 28, 0.62);
+    backdrop-filter: blur(26px) saturate(1.5);
+    -webkit-backdrop-filter: blur(26px) saturate(1.5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), 0 20px 60px rgba(0, 0, 0, 0.4);
+    transform-origin: 50% 100%;
+    opacity: 0;
+    scale: 0.96;
+    transform: translateY(14px);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.45s var(--ease-out-expo), scale 0.45s var(--ease-out-expo),
+      transform 0.45s var(--ease-out-expo), visibility 0s linear 0.45s;
+  }
+
+  .menu-panel.is-open {
+    opacity: 1;
+    scale: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: opacity 0.45s var(--ease-out-expo), scale 0.45s var(--ease-out-expo),
+      transform 0.45s var(--ease-out-expo), visibility 0s;
+  }
+
+  .menu-panel__col ul {
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .menu-panel__link {
+    font-size: 1.35rem;
+    font-weight: 480;
+    color: var(--c-white);
+    transition: color 0.3s ease, padding-left 0.4s var(--ease-out-expo);
+  }
+
+  .menu-panel__link:hover {
+    color: var(--c-accent);
+    padding-left: 0.35rem;
+  }
+
+  .menu-panel__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-top: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 1.35rem;
+    font-weight: 480;
+    color: var(--c-white);
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .menu-panel__cta:hover {
+    color: var(--c-accent);
+    border-color: var(--c-accent);
+  }
+
+  .menu-panel__cta svg {
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+
+  .menu-panel__cta:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 720px) {
+    .navpill {
+      gap: 0;
+      padding: 0.3rem;
+      bottom: 1rem;
+      max-width: calc(100vw - 1.5rem);
+      width: max-content;
+      overflow-x: auto;
+    }
+    .navpill__item {
+      padding: 0.55em 0.7em;
+      font-size: 0.82rem;
+    }
+    .menu-panel {
+      grid-template-columns: 1fr 1fr;
+      bottom: 4.6rem;
+      padding: 1.6rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-panel {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.getElementById('menu-panel');
+
+  if (toggle && panel) {
+    function setOpen(open: boolean) {
+      panel!.classList.toggle('is-open', open);
+      panel!.setAttribute('aria-hidden', String(!open));
+      toggle!.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', () => {
+      setOpen(!panel.classList.contains('is-open'));
+    });
+
+    // close on link click, Escape, or clicking outside
+    panel.querySelectorAll('[data-menu-link]').forEach((a) => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      const target = e.target as Node;
+      if (!panel.contains(target) && !toggle.contains(target)) setOpen(false);
+    });
+  }
+</script>

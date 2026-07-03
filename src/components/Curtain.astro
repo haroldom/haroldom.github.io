@@ -1,0 +1,164 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<!-- zoom-through-media transition: the word flies past the camera while
+     the tilted media card straightens, grows to fullscreen and dims into
+     the black of the next section -->
+<section class="curtain">
+  <div class="curtain__sticky">
+    <div class="curtain__card ph-media">
+      <img src="/images/project5.webp" alt="" width="1600" height="900" loading="lazy" />
+    </div>
+
+    <p class="curtain__word serif-italic" aria-hidden="true">{t('curtain.word')}.</p>
+    <p class="curtain__sr">{t('curtain.word')}</p>
+
+    <div class="curtain__shade" aria-hidden="true"></div>
+  </div>
+</section>
+
+<style>
+  .curtain {
+    /* runway = scroll distance driving the dive */
+    height: 260vh;
+    background: var(--c-paper);
+    position: relative;
+  }
+
+  .curtain__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: clip;
+    display: grid;
+    place-items: center;
+    background: var(--c-paper);
+  }
+
+  .curtain__card {
+    grid-area: 1 / 1;
+    width: min(38vw, 560px);
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+    will-change: transform;
+  }
+
+  .curtain__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* the word sits over both paper and card — exclusion blend keeps it
+     legible on each: dark over the paper, light over the media */
+  .curtain__word {
+    grid-area: 1 / 1;
+    z-index: 2;
+    font-size: clamp(5rem, 13vw, 12rem);
+    line-height: 1;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    pointer-events: none;
+    white-space: nowrap;
+    will-change: transform, opacity;
+  }
+
+  .curtain__shade {
+    position: absolute;
+    inset: 0;
+    background: var(--c-black);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .curtain__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  @media (max-width: 720px) {
+    .curtain__card {
+      width: 74vw;
+    }
+  }
+
+  /* with reduced motion the beat adds nothing — skip it entirely */
+  @media (prefers-reduced-motion: reduce) {
+    .curtain {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    const section = document.querySelector<HTMLElement>('.curtain');
+    const card = document.querySelector<HTMLElement>('.curtain__card');
+    const img = card?.querySelector('img');
+    const word = document.querySelector<HTMLElement>('.curtain__word');
+    const shade = document.querySelector<HTMLElement>('.curtain__shade');
+    if (!section || !card || !img || !word || !shade) return;
+
+    // scale needed for the card to cover the whole viewport
+    const coverScale = () =>
+      Math.max(
+        window.innerWidth / card.offsetWidth,
+        window.innerHeight / card.offsetHeight
+      ) * 1.04;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    /* the word flies past the camera */
+    tl.fromTo(
+      word,
+      { scale: 1, opacity: 1 },
+      { scale: 7, opacity: 0, duration: 0.5, ease: 'power2.in' },
+      0.06
+    );
+
+    /* the card straightens and grows until it fills the screen */
+    tl.fromTo(
+      card,
+      { rotation: -6, scale: 1 },
+      { rotation: 0, scale: coverScale, duration: 0.72, ease: 'power2.inOut' },
+      0.08
+    );
+
+    /* subtle counter-zoom inside the media for depth */
+    tl.fromTo(img, { scale: 1.18 }, { scale: 1, duration: 0.72, ease: 'none' }, 0.08);
+
+    /* lights dim — fullscreen media fades into the section's black */
+    tl.to(shade, { opacity: 1, duration: 0.17, ease: 'none' }, 0.8);
+
+    /* short hold on black before the release into Services */
+    tl.to({}, { duration: 0.03 }, 0.97);
+  });
+</script>

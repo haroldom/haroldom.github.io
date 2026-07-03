@@ -1,0 +1,79 @@
+---
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="statement section" id="about">
+  <div class="container">
+    <p class="statement__text" data-split="words">
+      {
+        lang === 'en' ? (
+          <>
+            More than building <em class="serif-italic">websites.</em> I create{' '}
+            <span class="statement__chip ph-media" aria-hidden="true">
+              <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+            </span>{' '}
+            digital experiences that are <em class="serif-italic">visually refined,</em>{' '}
+            technically solid, and designed <span class="u">to grow</span> with your
+            business
+          </>
+        ) : (
+          <>
+            Más que construir <em class="serif-italic">sitios web.</em> Creo{' '}
+            <span class="statement__chip ph-media" aria-hidden="true">
+              <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+            </span>{' '}
+            experiencias digitales <em class="serif-italic">visualmente refinadas,</em>{' '}
+            técnicamente sólidas y diseñadas <span class="u">para crecer</span> con tu
+            negocio
+          </>
+        )
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  .statement {
+    display: grid;
+    place-items: center;
+    min-height: 90svh;
+    background: var(--c-black);
+  }
+
+  .statement__text {
+    max-width: 24ch;
+    margin-inline: auto;
+    font-size: var(--fs-statement);
+    line-height: 1.28;
+    font-weight: 450;
+    letter-spacing: -0.01em;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .statement__text em {
+    font-weight: 300;
+  }
+
+  .statement__chip {
+    display: inline-block;
+    width: 2.6em;
+    height: 1.05em;
+    border-radius: 100px;
+    vertical-align: -0.14em;
+    margin-inline: 0.15em;
+  }
+
+  .statement__chip img,
+  .statement__chip video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

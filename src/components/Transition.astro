@@ -1,0 +1,118 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="transition" aria-label="Behind the process">
+  <div class="transition__sticky">
+    <!-- white circles growing in from the top and bottom edges -->
+    <div class="transition__circle transition__circle--top" aria-hidden="true"></div>
+    <div class="transition__circle transition__circle--bottom" aria-hidden="true"></div>
+
+    <h2 class="transition__title serif">
+      <span class="transition__line">{t('transition.behind')}</span>
+      <span class="transition__line transition__line--mid">{t('transition.the')}</span>
+      <span class="transition__line">{t('transition.process')}</span>
+    </h2>
+  </div>
+</section>
+
+<style>
+  .transition {
+    /* extra height = scroll distance that drives the circles */
+    height: 280vh;
+    background: var(--c-black);
+    position: relative;
+  }
+
+  .transition__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: clip;
+    display: grid;
+    place-items: center;
+  }
+
+  .transition__circle {
+    position: absolute;
+    left: 50%;
+    width: 220vmax;
+    height: 220vmax;
+    margin-left: -110vmax;
+    border-radius: 50%;
+    background: var(--c-paper);
+    will-change: transform;
+  }
+
+  /* default = fully closed (white) so the section reads fine without JS;
+     the script resets them open and scrubs them shut */
+  .transition__circle--top {
+    bottom: 100%;
+    transform: translateY(80vh);
+  }
+
+  .transition__circle--bottom {
+    top: 100%;
+    transform: translateY(-80vh);
+  }
+
+  .transition__title {
+    position: relative;
+    z-index: 2;
+    color: var(--c-black);
+    text-align: center;
+    font-size: var(--fs-display);
+    line-height: 0.98;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .transition__line {
+    display: block;
+  }
+
+  .transition__line--mid {
+    font-size: 0.72em;
+  }
+</style>
+
+<script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    const section = document.querySelector<HTMLElement>('.transition');
+    const top = document.querySelector<HTMLElement>('.transition__circle--top');
+    const bottom = document.querySelector<HTMLElement>('.transition__circle--bottom');
+    if (!section || !top || !bottom) return;
+
+    // circles converge until the whole viewport is white.
+    // scrub: true (no smoothing lag) so fast scrolling can never
+    // leave a circle stranded mid-way
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+    });
+
+    tl.fromTo(top, { y: 0 }, { y: '80vh', ease: 'none' }, 0).fromTo(
+      bottom,
+      { y: 0 },
+      { y: '-80vh', ease: 'none' },
+      0
+    );
+  });
+</script>

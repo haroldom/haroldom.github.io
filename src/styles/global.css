@@ -1,0 +1,382 @@
+/* ============================================
+   FONTS — self-hosted from /public/fonts/
+   Display serif: Zodiak · Sans: Satoshi
+   (both Fontshare, free license)
+   ============================================ */
+
+@font-face {
+  font-family: 'Gambetta';
+  src: url('/fonts/Gambetta-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  src: url('/fonts/Gambetta-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  src: url('/fonts/Gambetta-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gambetta';
+  src: url('/fonts/Gambetta-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
+   TOKENS
+   ============================================ */
+
+:root {
+  /* color */
+  --c-black: #0c0c0c;
+  --c-near-black: #131313;
+  --c-white: #f2f0ec;
+  --c-paper: #f7f5f1;
+  --c-grey: #8c8c88;
+  --c-grey-dark: #3a3a38;
+  --c-line-dark: rgba(242, 240, 236, 0.14);
+  --c-line-light: rgba(12, 12, 12, 0.14);
+  --c-accent: #da7756; /* clawd orange */
+
+  /* type */
+  --f-serif: 'Gambetta', 'Times New Roman', Georgia, serif;
+  --f-sans: 'Satoshi', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  /* fluid display scale */
+  --fs-hero: clamp(4.5rem, 17.5vw, 17rem);       /* HAROLD ORMEÑO */
+  --fs-display: clamp(3rem, 9vw, 8.5rem);        /* BEHIND THE PROCESS / STRATEGY. */
+  --fs-project: clamp(2.6rem, 7.5vw, 6.5rem);    /* project names */
+  --fs-statement: clamp(1.75rem, 4.2vw, 3.6rem); /* big statement */
+  --fs-heading: clamp(2rem, 4.5vw, 4rem);        /* From concept to launch */
+  --fs-body: clamp(0.95rem, 1.05vw, 1.1rem);
+  --fs-small: 0.8125rem;
+  --fs-label: 0.6875rem;
+
+  /* space */
+  --space-section: clamp(6rem, 14vh, 11rem);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+/* ============================================
+   RESET / BASE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: initial; /* Lenis owns scrolling */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--c-black);
+  color: var(--c-white);
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+::selection {
+  background: var(--c-accent);
+  color: var(--c-black);
+}
+
+/* ============================================
+   TYPE UTILITIES
+   ============================================ */
+
+.serif {
+  font-family: var(--f-serif);
+  font-weight: 400;
+}
+
+.serif-italic {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.small {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.muted {
+  color: var(--c-grey);
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+.container {
+  width: 100%;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--space-section);
+}
+
+/* light sections flip the palette */
+.theme-light {
+  background: var(--c-paper);
+  color: var(--c-black);
+}
+
+/* ============================================
+   COMPONENTS SHARED
+   ============================================ */
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.7em 1.4em;
+  border-radius: 100px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transition: transform 0.5s var(--ease-out-expo), background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.btn-pill--solid {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+
+.btn-pill--solid:hover {
+  background: var(--c-accent);
+  color: var(--c-black);
+}
+
+.btn-pill--dark {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.btn-pill--dark:hover {
+  background: var(--c-accent);
+  color: var(--c-black);
+}
+
+.btn-pill--outline {
+  border: 1px solid var(--c-line-dark);
+}
+
+/* underlined words inside the statement */
+.u {
+  text-decoration: underline;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.12em;
+}
+
+/* media placeholder frames — replace src manually later */
+.ph-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-grey-dark);
+}
+
+.ph-media img,
+.ph-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   CUSTOM CURSOR (injected by app.ts on
+   pointer-fine devices)
+   ============================================ */
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  opacity: 0;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: #fff;
+  transition: scale 0.3s var(--ease-out-expo);
+}
+
+.cursor-dot.is-active {
+  scale: 0.45;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  transition: scale 0.45s var(--ease-out-expo);
+}
+
+.cursor-ring.is-active {
+  scale: 1.75;
+}
+
+/* ============================================
+   ANIMATION PRE-STATES (JS-gated so content
+   stays visible if JS never runs)
+   ============================================ */
+
+html.js [data-reveal] {
+  opacity: 0;
+}
+
+html.js [data-reveal-lines] .line {
+  overflow: clip;
+}
+
+/* SplitText masking */
+.split-parent {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1;
+  }
+}

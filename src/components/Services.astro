@@ -1,0 +1,273 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const services = [1, 2, 3, 4, 5].map((n) => ({
+  num: `0${n}`,
+  title: t(`services.0${n}.title` as Parameters<typeof t>[0]),
+  desc: t(`services.0${n}.desc` as Parameters<typeof t>[0]),
+}));
+
+// REPLACE: real testimonials
+const testimonials = [
+  { quote: t('services.testimonial'), name: 'Michael R.', role: 'Founder, Elevate Studio' },
+  { quote: t('services.testimonial'), name: 'Daniela P.', role: 'CEO, Nova Brands' },
+  { quote: t('services.testimonial'), name: 'Jorge M.', role: 'CMO, Andina Foods' },
+];
+---
+
+<section class="services section" id="services">
+  <div class="container services__grid">
+    <!-- testimonials rail: infinite vertical loop, faded top & bottom -->
+    <aside class="services__rail" aria-label="Testimonials" data-reveal>
+      <div class="services__loop">
+        {
+          [0, 1].map((dup) => (
+            <div class="services__group" aria-hidden={dup === 1 ? 'true' : undefined}>
+              {testimonials.map((item) => (
+                <figure class="services__quote">
+                  <svg width="24" height="18" viewBox="0 0 26 20" aria-hidden="true">
+                    <path
+                      d="M0 0h10v10c0 6-3 9-9 10l-1-3c3-1 4-2.5 4-5H0V0Zm15 0h10v10c0 6-3 9-9 10l-1-3c3-1 4-2.5 4-5h-4V0Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <blockquote class="services__quote-text">{item.quote}</blockquote>
+                  <figcaption class="services__quote-by">
+                    <img
+                      class="services__avatar"
+                      src="/placeholders/avatar.svg"
+                      alt=""
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                    />
+                    <span>
+                      <span class="services__quote-name">{item.name}</span>
+                      <span class="small muted">{item.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </aside>
+
+    <!-- heading + list -->
+    <div class="services__main">
+      <h2 class="services__heading serif">
+        <span data-split="lines">{t('services.heading.1')}</span>
+        <span data-split="lines">{t('services.heading.2')}</span>
+        <span data-split="lines">{t('services.heading.3')}</span>
+      </h2>
+
+      <ol class="services__list">
+        {
+          services.map((s, i) => (
+            <li class="services__item" data-reveal data-reveal-delay={i * 0.05}>
+              <span class="services__num label muted">{s.num}</span>
+              <div>
+                <h3 class="services__title">{s.title}</h3>
+                <p class="small muted">{s.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--c-black);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 2.2fr;
+    gap: calc(var(--gutter) * 2);
+    align-items: start;
+  }
+
+  /* --- testimonials: infinite loop --- */
+  .services__rail {
+    position: sticky;
+    top: 12vh;
+    height: min(68vh, 620px);
+    overflow: clip;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .services__loop {
+    animation: services-loop 26s linear infinite;
+    will-change: transform;
+  }
+
+  .services__rail:hover .services__loop {
+    animation-play-state: paused;
+  }
+
+  @keyframes services-loop {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  .services__quote {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 32ch;
+    padding-block: 2rem;
+    border-top: 1px solid var(--c-line-dark);
+    color: var(--c-white);
+  }
+
+  .services__quote-text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: rgba(242, 240, 236, 0.85);
+  }
+
+  .services__quote-by {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .services__quote-by > span {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .services__quote-name {
+    font-size: 0.95rem;
+    color: var(--c-white);
+  }
+
+  .services__avatar {
+    border-radius: 50%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services__loop {
+      animation: none;
+    }
+    .services__rail {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+  }
+
+  /* --- heading --- */
+  .services__heading {
+    font-size: var(--fs-display);
+    line-height: 0.98;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    margin-bottom: clamp(3rem, 8vh, 5.5rem);
+  }
+
+  .services__heading span {
+    display: block;
+  }
+
+  /* staggered editorial offsets */
+  .services__heading span:nth-child(2) {
+    margin-left: clamp(2rem, 9vw, 9rem);
+  }
+
+  .services__heading span:nth-child(3) {
+    margin-left: clamp(1rem, 4vw, 4rem);
+  }
+
+  /* --- list --- */
+  .services__list {
+    display: grid;
+  }
+
+  .services__item {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 1.6rem;
+    border-top: 1px solid var(--c-line-dark);
+    transition: padding-left 0.5s var(--ease-out-expo);
+  }
+
+  .services__item:hover {
+    padding-left: 0.8rem;
+  }
+
+  .services__num {
+    transition: color 0.4s ease;
+  }
+
+  .services__item:hover .services__num {
+    color: var(--c-accent);
+  }
+
+  .services__item:last-child {
+    border-bottom: 1px solid var(--c-line-dark);
+  }
+
+  .services__title {
+    font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 900px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
+    .services__rail {
+      position: static;
+      order: 2;
+    }
+  }
+</style>
+
+<script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    // heading lines drift in alternating directions while scrolling
+    const heading = document.querySelector<HTMLElement>('.services__heading');
+    if (!heading) return;
+
+    heading.querySelectorAll(':scope > span').forEach((line, i) => {
+      gsap.to(line, {
+        xPercent: i % 2 === 0 ? 3.5 : -3.5,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    });
+  });
+</script>

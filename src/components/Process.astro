@@ -1,0 +1,350 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const tags: Record<Lang, string[][]> = {
+  en: [
+    ['Research', 'Strategy', 'Insight'],
+    ['UX', 'UI', 'Design system'],
+    ['Frontend', 'Performance', 'Quality'],
+    ['Testing', 'Deployment', 'Optimization'],
+  ],
+  es: [
+    ['Investigación', 'Estrategia', 'Insight'],
+    ['UX', 'UI', 'Sistema de diseño'],
+    ['Frontend', 'Rendimiento', 'Calidad'],
+    ['Testing', 'Despliegue', 'Optimización'],
+  ],
+};
+
+interface StepIcon {
+  viewBox: string;
+  width: number;
+  height: number;
+  strokeWidth: number;
+  paths: string[];
+}
+
+const icons: StepIcon[] = [
+  // compass
+  {
+    viewBox: '0 0 24 24',
+    width: 28,
+    height: 28,
+    strokeWidth: 1.4,
+    paths: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm3.4-12.4-2.1 4.6-4.7 2.2 2.1-4.6 4.7-2.2Z'],
+  },
+  // fountain pen nib (Harold's asset)
+  {
+    viewBox: '0 0 32 33',
+    width: 29,
+    height: 30,
+    strokeWidth: 1.5,
+    paths: [
+      'M1.37304 30.6015L11.9797 19.9949M25.3364 15.2782L22.1614 24.8032C22.1107 24.9559 22.0239 25.0941 21.9085 25.2061C21.793 25.3181 21.6522 25.4006 21.498 25.4465L2.0347 31.2315C1.85935 31.2836 1.67308 31.2866 1.49615 31.2402C1.31923 31.1937 1.15842 31.0997 1.03125 30.9682C0.90407 30.8367 0.81539 30.6729 0.774858 30.4945C0.734327 30.3161 0.743496 30.1301 0.801369 29.9565L7.12137 10.9999C7.16666 10.8638 7.24071 10.739 7.33849 10.634C7.43626 10.5291 7.55548 10.4464 7.68804 10.3915L16.6664 6.69487C16.8489 6.61948 17.0497 6.59983 17.2433 6.63839C17.437 6.67695 17.615 6.77199 17.7547 6.91153L25.0947 14.2549C25.226 14.3862 25.3182 14.5515 25.3609 14.7322C25.4036 14.913 25.3951 15.102 25.3364 15.2782Z',
+      'M25.5331 14.6918L30.2465 9.97679C30.8714 9.3517 31.2224 8.504 31.2224 7.62012C31.2224 6.73624 30.8714 5.88855 30.2465 5.26346L26.7131 1.72679C26.4036 1.41712 26.036 1.17146 25.6315 1.00386C25.227 0.836264 24.7935 0.75 24.3556 0.75C23.9178 0.75 23.4842 0.836264 23.0797 1.00386C22.6752 1.17146 22.3077 1.41712 21.9981 1.72679L17.2848 6.44179M15.5148 16.4585C15.2826 16.2263 15.0069 16.0422 14.7035 15.9167C14.4002 15.7911 14.075 15.7265 13.7467 15.7266C13.4184 15.7267 13.0933 15.7914 12.7899 15.9171C12.4866 16.0428 12.2111 16.2271 11.9789 16.4593C11.7468 16.6915 11.5627 16.9672 11.4372 17.2705C11.3116 17.5739 11.247 17.899 11.2471 18.2274C11.2471 18.5557 11.3119 18.8808 11.4376 19.1841C11.5633 19.4874 11.7476 19.763 11.9798 19.9951C12.4488 20.4639 13.0848 20.7272 13.7479 20.727C14.411 20.7268 15.0468 20.4633 15.5156 19.9943C15.9844 19.5253 16.2476 18.8893 16.2475 18.2262C16.2473 17.5631 15.9838 16.9272 15.5148 16.4585Z',
+    ],
+  },
+  // code
+  {
+    viewBox: '0 0 24 24',
+    width: 28,
+    height: 28,
+    strokeWidth: 1.4,
+    paths: ['m8 7.5-5 4.5 5 4.5M16 7.5l5 4.5-5 4.5M13.4 5 10.6 19'],
+  },
+  // rocket (Harold's asset)
+  {
+    viewBox: '0 0 21 38',
+    width: 17,
+    height: 31,
+    strokeWidth: 1.5,
+    paths: [
+      'M6.69815 26.7931H13.3648L16.7998 15.7998C17.2827 14.2554 17.3837 12.6169 17.094 11.0249C16.8042 9.43289 16.1325 7.93499 15.1365 6.65975L10.8198 1.13475C10.7263 1.01492 10.6067 0.91799 10.4701 0.851321C10.3335 0.784652 10.1835 0.75 10.0315 0.75C9.87948 0.75 9.72948 0.784652 9.59288 0.851321C9.45627 0.91799 9.33667 1.01492 9.24315 1.13475L4.92648 6.65975C3.93043 7.93499 3.25872 9.43289 2.96901 11.0249C2.67929 12.6169 2.78023 14.2554 3.26315 15.7998L6.69815 26.7931ZM6.69815 26.7931L1.69815 30.1264C1.69815 30.1264 -1.63519 23.4598 4.19815 19.2931M6.69815 31.7931C6.69815 35.1264 10.0315 36.7931 10.0315 36.7931C10.0315 36.7931 13.3648 35.1264 13.3648 31.7931M16.5831 19.2931C22.4165 23.4598 19.0831 30.1264 19.0831 30.1264L14.0831 26.7931',
+      'M10.0316 16.7926C9.14752 16.7926 8.29967 16.4415 7.67455 15.8163C7.04943 15.1912 6.69824 14.3434 6.69824 13.4593C6.69824 12.5753 7.04943 11.7274 7.67455 11.1023C8.29967 10.4772 9.14752 10.126 10.0316 10.126C10.9156 10.126 11.7635 10.4772 12.3886 11.1023C13.0137 11.7274 13.3649 12.5753 13.3649 13.4593C13.3649 14.3434 13.0137 15.1912 12.3886 15.8163C11.7635 16.4415 10.9156 16.7926 10.0316 16.7926Z',
+    ],
+  },
+];
+
+const videos = [
+  '/videos/discover.mp4',
+  '/videos/design.mp4',
+  '/videos/develop.mp4',
+  '/videos/deliver.mp4',
+];
+
+const steps = [1, 2, 3, 4].map((n, i) => ({
+  num: `0${n}`,
+  title: t(`process.0${n}.title` as Parameters<typeof t>[0]),
+  desc: t(`process.0${n}.desc` as Parameters<typeof t>[0]),
+  tags: tags[lang][i],
+  icon: icons[i],
+  video: videos[i],
+}));
+---
+
+<section class="process theme-light section" id="process">
+  <div class="container">
+    <!-- header: editorial, full width, staggered lines -->
+    <div class="process__head">
+      <p class="label muted process__kicker" data-reveal>→ {t('process.approach')}</p>
+
+      <h2 class="process__heading serif">
+        <span class="process__heading-line process__heading-l1" data-split="lines">
+          {t('process.heading.1')}
+        </span>
+        <em class="serif-italic process__heading-line process__heading-l2" data-split="lines">
+          {t('process.heading.2')}
+        </em>
+      </h2>
+
+      <div class="process__head-row">
+        <p class="process__intro" data-split="words">{t('process.intro')}</p>
+        <a class="btn-pill btn-pill--dark process__cta" href="#contact" data-magnetic="0.25">
+          {t('process.cta')}
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1.5 10.5 10.5 1.5M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- stacking step cards -->
+    <ol class="process__steps">
+      {
+        steps.map((step, i) => (
+          <li class="process__step" style={`--i: ${i}`}>
+            <div class="process__step-inner">
+              <span class="process__num serif" aria-hidden="true">
+                {step.num}
+              </span>
+
+              <div class="process__body">
+                <span class="process__icon" aria-hidden="true">
+                  <svg
+                    width={step.icon.width}
+                    height={step.icon.height}
+                    viewBox={step.icon.viewBox}
+                    fill="none"
+                  >
+                    {step.icon.paths.map((d) => (
+                      <path
+                        d={d}
+                        stroke="currentColor"
+                        stroke-width={step.icon.strokeWidth}
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    ))}
+                  </svg>
+                </span>
+                <h3 class="process__title">{step.title}</h3>
+                <p class="small muted process__desc">{step.desc}</p>
+                <ul class="process__tags">
+                  {step.tags.map((tag) => (
+                    <li class="process__tag small">{tag}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="process__media ph-media" data-parallax>
+                <video src={step.video} autoplay muted loop playsinline preload="metadata"
+                ></video>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process {
+    /* stacked cards need room to scroll */
+    padding-bottom: clamp(4rem, 10vh, 8rem);
+  }
+
+  /* --- header: editorial full-width --- */
+  .process__head {
+    margin-bottom: clamp(5rem, 12vh, 9rem);
+  }
+
+  .process__kicker {
+    margin-bottom: 2rem;
+  }
+
+  .process__heading {
+    font-size: clamp(3.2rem, 9vw, 8.5rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+  }
+
+  .process__heading-line {
+    display: block;
+  }
+
+  .process__heading-l2 {
+    font-weight: 300;
+    margin-left: clamp(3rem, 24vw, 24rem);
+  }
+
+  .process__head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gutter);
+    margin-top: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  .process__intro {
+    max-width: 36ch;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .process__cta {
+    flex-shrink: 0;
+  }
+
+  /* --- stacking cards --- */
+  .process__steps {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .process__step {
+    position: sticky;
+    top: calc(4.5rem + var(--i) * 1.5rem);
+  }
+
+  .process__step-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr minmax(280px, 42%);
+    gap: var(--gutter);
+    align-items: center;
+    background: var(--c-paper);
+    border-top: 1px solid var(--c-line-light);
+    padding-block: 2.2rem;
+    min-height: 52vh;
+    overflow: clip;
+  }
+
+  /* huge ghost numeral sitting behind the content */
+  .process__num {
+    position: absolute;
+    left: -0.04em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(14rem, 26vw, 26rem);
+    line-height: 0.8;
+    color: rgba(12, 12, 12, 0.05);
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+
+  .process__body {
+    position: relative;
+    z-index: 1;
+    padding-left: clamp(5rem, 11vw, 11rem);
+  }
+
+  .process__icon {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    color: var(--c-black);
+  }
+
+  .process__title {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 550;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.7rem;
+  }
+
+  .process__desc {
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 42ch;
+  }
+
+  .process__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .process__tag {
+    padding: 0.45em 1.1em;
+    border: 1px solid rgba(12, 12, 12, 0.18);
+    border-radius: 100px;
+    color: var(--c-black);
+    background: #fff;
+  }
+
+  .process__media {
+    aspect-ratio: 16 / 11;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 900px) {
+    .process__heading-l2 {
+      margin-left: 2rem;
+    }
+    .process__head-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .process__step {
+      position: static;
+    }
+    .process__step-inner {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+    .process__num {
+      font-size: 9rem;
+      top: 0;
+      transform: none;
+    }
+    .process__body {
+      padding-left: 3.5rem;
+    }
+  }
+</style>
+
+<script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    // the two heading lines drift apart horizontally while scrolling
+    const head = document.querySelector<HTMLElement>('.process__head');
+    if (!head) return;
+
+    gsap.to('.process__heading-l1', {
+      xPercent: 4,
+      ease: 'none',
+      scrollTrigger: { trigger: head, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.process__heading-l2', {
+      xPercent: -5,
+      ease: 'none',
+      scrollTrigger: { trigger: head, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  });
+</script>
