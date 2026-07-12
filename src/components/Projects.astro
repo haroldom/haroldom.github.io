@@ -13,25 +13,25 @@ const t = useTranslations(lang);
 const projects = [
   {
     title: 'Orange Logistics',
-    meta: 'Modern Website & Design',
+    meta: t('projects.01.meta'),
     href: '#',
     preview: '/images/project1.webp',
   },
   {
     title: 'Collie Valley',
-    meta: 'Brand & Website',
+    meta: t('projects.02.meta'),
     href: '#',
     preview: '/images/project2.webp',
   },
   {
-    title: 'Nam',
-    meta: 'E-commerce Experience',
+    title: 'Khipu',
+    meta: t('projects.03.meta'),
     href: '#',
     preview: '/images/project3.webp',
   },
   {
     title: 'Treepilot',
-    meta: 'Product Website',
+    meta: t('projects.04.meta'),
     href: '#',
     preview: '/images/project4.webp',
   },
@@ -127,6 +127,7 @@ const projects = [
     margin-top: 0.5rem;
     font-size: 18px !important;
     margin-left: 0;
+    max-width: 28ch;
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 0.5s ease 0.1s, transform 0.5s var(--ease-out-expo) 0.1s, margin-left 1.5s var(--ease-out-expo);

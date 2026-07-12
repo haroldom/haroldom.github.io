@@ -16,12 +16,17 @@ const t = useTranslations(lang);
     <a class="hero__logo" href="#top" data-hero="fade" aria-label="Harold Ormeño">
       <img src="/images/logo.webp" alt="" width="364" height="365" />
     </a>
-    <a class="btn-pill btn-pill--solid" href="#contact" data-hero="fade" data-magnetic="0.3">
-      {t('nav.bookCall')}
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-        <path d="M1.5 10.5 10.5 1.5M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5"></path>
-      </svg>
-    </a>
+    <div class="hero__bar-actions">
+      <a class="btn-pill btn-pill--solid" href="#contact" data-hero="fade" data-magnetic="0.3">
+        {t('nav.bookCall')}
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M1.5 10.5 10.5 1.5M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5"></path>
+        </svg>
+      </a>
+      <a class="btn-pill btn-pill--outline" href="/cv.pdf" download data-hero="fade" data-magnetic="0.3">
+        {t('nav.cv')}
+      </a>
+    </div>
   </div>
 
   <!-- taglines + portrait -->
@@ -30,9 +35,12 @@ const t = useTranslations(lang);
       {t('hero.tagline.1')}<br />{t('hero.tagline.2')}
     </p>
 
-    <p class="hero__role small muted" data-hero="fade">
-      <span aria-hidden="true">↗</span><br />
-      {t('hero.role.1')}<br />{t('hero.role.2')}
+    <p class="hero__role muted" data-hero="fade">
+      <span class="hero__role-icon">
+        <svg width="18" height="18" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M0 2.5C0 1.67157 0.671573 1 1.5 1H13.5C14.3284 1 15 1.67157 15 2.5V12.5C15 13.3284 14.3284 14 13.5 14H1.5C0.671573 14 0 13.3284 0 12.5V2.5ZM5.79293 7.50001L3.14648 4.85356L3.85359 4.14645L7.20714 7.50001L3.85359 10.8536L3.14648 10.1465L5.79293 7.50001ZM12 11H8V10H12V11Z" fill="#f2f0ec"></path> </g></svg>
+      </span>
+      <span class="hero__role-title">{t('hero.role.2')}</span>
+      <span class="hero__role-tag">{t('hero.role.1')}</span>
     </p>
   </div>
 
@@ -115,6 +123,12 @@ const t = useTranslations(lang);
     z-index: 4;
   }
 
+  .hero__bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
   .hero__logo img {
     width: 40px;
     height: 40px;
@@ -149,6 +163,25 @@ const t = useTranslations(lang);
   .hero__role {
     justify-self: end;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .hero__role-icon {
+    margin-bottom: 0.15rem;
+  }
+
+  .hero__role-title {
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
+    line-height: 1.3;
+    opacity: 0.7;
+  }
+
+  .hero__role-tag {
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    font-weight: 500;
+    line-height: 1;
   }
 
   /* portrait: slim column, vertically centered in the viewport, b&w */

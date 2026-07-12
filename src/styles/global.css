@@ -50,14 +50,14 @@
 
 :root {
   /* color */
-  --c-black: #0c0c0c;
-  --c-near-black: #131313;
+  --c-black: #020202;
+  --c-near-black: #020202;
   --c-white: #f2f0ec;
-  --c-paper: #f7f5f1;
+  --c-paper: #ffffff;
   --c-grey: #8c8c88;
   --c-grey-dark: #3a3a38;
-  --c-line-dark: rgba(242, 240, 236, 0.14);
-  --c-line-light: rgba(12, 12, 12, 0.14);
+  --c-line-dark: rgba(248, 248, 248, 0.14);
+  --c-line-light: rgba(202, 201, 201, 0.14);
   --c-accent: #f2f0ec; /* monochrome highlight (was clawd orange) */
 
   /* type */
@@ -242,12 +242,7 @@ ol {
   border: 1px solid var(--c-line-dark);
 }
 
-/* underlined words inside the statement */
-.u {
-  text-decoration: underline;
-  text-decoration-thickness: 0.04em;
-  text-underline-offset: 0.12em;
-}
+
 
 /* media placeholder frames — replace src manually later */
 .ph-media {

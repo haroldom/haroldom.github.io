@@ -36,16 +36,16 @@ const icons: StepIcon[] = [
   // compass
   {
     viewBox: '0 0 24 24',
-    width: 28,
-    height: 28,
+    width: 40,
+    height: 40,
     strokeWidth: 1.4,
     paths: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm3.4-12.4-2.1 4.6-4.7 2.2 2.1-4.6 4.7-2.2Z'],
   },
   // fountain pen nib (Harold's asset)
   {
     viewBox: '0 0 32 33',
-    width: 29,
-    height: 30,
+    width: 42,
+    height: 44,
     strokeWidth: 1.5,
     paths: [
       'M1.37304 30.6015L11.9797 19.9949M25.3364 15.2782L22.1614 24.8032C22.1107 24.9559 22.0239 25.0941 21.9085 25.2061C21.793 25.3181 21.6522 25.4006 21.498 25.4465L2.0347 31.2315C1.85935 31.2836 1.67308 31.2866 1.49615 31.2402C1.31923 31.1937 1.15842 31.0997 1.03125 30.9682C0.90407 30.8367 0.81539 30.6729 0.774858 30.4945C0.734327 30.3161 0.743496 30.1301 0.801369 29.9565L7.12137 10.9999C7.16666 10.8638 7.24071 10.739 7.33849 10.634C7.43626 10.5291 7.55548 10.4464 7.68804 10.3915L16.6664 6.69487C16.8489 6.61948 17.0497 6.59983 17.2433 6.63839C17.437 6.67695 17.615 6.77199 17.7547 6.91153L25.0947 14.2549C25.226 14.3862 25.3182 14.5515 25.3609 14.7322C25.4036 14.913 25.3951 15.102 25.3364 15.2782Z',
@@ -55,16 +55,16 @@ const icons: StepIcon[] = [
   // code
   {
     viewBox: '0 0 24 24',
-    width: 28,
-    height: 28,
+    width: 40,
+    height: 40,
     strokeWidth: 1.4,
     paths: ['m8 7.5-5 4.5 5 4.5M16 7.5l5 4.5-5 4.5M13.4 5 10.6 19'],
   },
   // rocket (Harold's asset)
   {
     viewBox: '0 0 21 38',
-    width: 17,
-    height: 31,
+    width: 24,
+    height: 44,
     strokeWidth: 1.5,
     paths: [
       'M6.69815 26.7931H13.3648L16.7998 15.7998C17.2827 14.2554 17.3837 12.6169 17.094 11.0249C16.8042 9.43289 16.1325 7.93499 15.1365 6.65975L10.8198 1.13475C10.7263 1.01492 10.6067 0.91799 10.4701 0.851321C10.3335 0.784652 10.1835 0.75 10.0315 0.75C9.87948 0.75 9.72948 0.784652 9.59288 0.851321C9.45627 0.91799 9.33667 1.01492 9.24315 1.13475L4.92648 6.65975C3.93043 7.93499 3.25872 9.43289 2.96901 11.0249C2.67929 12.6169 2.78023 14.2554 3.26315 15.7998L6.69815 26.7931ZM6.69815 26.7931L1.69815 30.1264C1.69815 30.1264 -1.63519 23.4598 4.19815 19.2931M6.69815 31.7931C6.69815 35.1264 10.0315 36.7931 10.0315 36.7931C10.0315 36.7931 13.3648 35.1264 13.3648 31.7931M16.5831 19.2931C22.4165 23.4598 19.0831 30.1264 19.0831 30.1264L14.0831 26.7931',
@@ -94,8 +94,6 @@ const steps = [1, 2, 3, 4].map((n, i) => ({
   <div class="container">
     <!-- header: editorial, full width, staggered lines -->
     <div class="process__head">
-      <p class="label muted process__kicker" data-reveal>→ {t('process.approach')}</p>
-
       <h2 class="process__heading serif">
         <span class="process__heading-line process__heading-l1" data-split="lines">
           {t('process.heading.1')}
@@ -219,7 +217,6 @@ const steps = [1, 2, 3, 4].map((n, i) => ({
   /* --- stacking cards --- */
   .process__steps {
     display: grid;
-    gap: 1.5rem;
   }
 
   .process__step {
@@ -231,11 +228,10 @@ const steps = [1, 2, 3, 4].map((n, i) => ({
     position: relative;
     display: grid;
     grid-template-columns: 1fr minmax(280px, 42%);
-    gap: var(--gutter);
-    align-items: center;
+    column-gap: var(--gutter);
+    align-items: stretch;
     background: var(--c-paper);
     border-top: 1px solid var(--c-line-light);
-    padding-block: 2.2rem;
     min-height: 52vh;
     overflow: clip;
   }
@@ -258,6 +254,10 @@ const steps = [1, 2, 3, 4].map((n, i) => ({
     position: relative;
     z-index: 1;
     padding-left: clamp(5rem, 11vw, 11rem);
+    padding-block: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .process__icon {
@@ -293,11 +293,6 @@ const steps = [1, 2, 3, 4].map((n, i) => ({
     border-radius: 100px;
     color: var(--c-black);
     background: #fff;
-  }
-
-  .process__media {
-    aspect-ratio: 16 / 11;
-    border-radius: 10px;
   }
 
   @media (max-width: 900px) {

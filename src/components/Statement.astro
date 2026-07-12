@@ -15,21 +15,25 @@ const { lang } = Astro.props;
         lang === 'en' ? (
           <>
             More than building <em class="serif-italic">websites.</em> I create{' '}
-            <span class="statement__chip ph-media" aria-hidden="true">
-              <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+            <span class="chip-box" aria-hidden="true">
+              <span class="statement__chip ph-media">
+                <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+              </span>
             </span>{' '}
             digital experiences that are <em class="serif-italic">visually refined,</em>{' '}
-            technically solid, and designed <span class="u">to grow</span> with your
+            technically solid, and designed to grow with your
             business
           </>
         ) : (
           <>
             Más que construir <em class="serif-italic">sitios web.</em> Creo{' '}
-            <span class="statement__chip ph-media" aria-hidden="true">
-              <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+            <span class="chip-box" aria-hidden="true">
+              <span class="statement__chip ph-media">
+                <video src="/videos/about.mp4" autoplay muted loop playsinline></video>
+              </span>
             </span>{' '}
             experiencias digitales <em class="serif-italic">visualmente refinadas,</em>{' '}
-            técnicamente sólidas y diseñadas <span class="u">para crecer</span> con tu
+            técnicamente sólidas y diseñadas para crecer con tu
             negocio
           </>
         )
@@ -61,13 +65,21 @@ const { lang } = Astro.props;
     font-weight: 300;
   }
 
-  .statement__chip {
+  .chip-box {
     display: inline-block;
     width: 2.6em;
     height: 1.05em;
     border-radius: 100px;
     vertical-align: -0.14em;
     margin-inline: 0.15em;
+    overflow: hidden;
+  }
+
+  .statement__chip {
+    display: block;
+    width: 100%;
+    height: 100%;
+    will-change: clip-path;
   }
 
   .statement__chip img,
@@ -77,3 +89,42 @@ const { lang } = Astro.props;
     object-fit: cover;
   }
 </style>
+
+  <script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    const chip = document.querySelector<HTMLElement>('.statement__chip');
+    if (!chip) return;
+
+    const video = chip.querySelector<HTMLVideoElement>('video');
+
+    gsap.set(chip, { clipPath: 'inset(0 100% 0 0)' });
+
+    gsap.to(chip, {
+      clipPath: 'inset(0 0% 0 0)',
+      duration: 1,
+      ease: 'expo.inOut',
+      scrollTrigger: {
+        trigger: chip,
+        start: 'top 85%',
+        once: true,
+      },
+    });
+
+    if (video) {
+      const section = document.querySelector<HTMLElement>('.statement');
+      if (section) {
+        new IntersectionObserver(
+          (entries) => {
+            const visible = entries[0].isIntersecting;
+            visible ? video.play().catch(() => {}) : video.pause();
+          },
+          { threshold: 0.15 },
+        ).observe(section);
+      }
+    }
+  });
+</script>

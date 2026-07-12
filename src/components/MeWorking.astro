@@ -54,6 +54,10 @@ const awards = [
       <p class="mework__quote-text" set:html={t('achievements.favorite.quote')}></p>
       <span class="mework__quote-label">{t('achievements.favorite.label')}</span>
     </div>
+
+    <a class="mework__cv" href="/cv.pdf" download>
+      {t('nav.cv')}
+    </a>
   </div>
 </section>
 
@@ -131,6 +135,27 @@ const awards = [
     opacity: 0.55;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+  }
+
+  .mework__cv {
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--c-white);
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+    padding: 0.6em 1.8em;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .mework__cv:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
   }
 </style>
 

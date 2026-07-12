@@ -11,19 +11,19 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 
 const navLinks = [
-  { key: 'footer.about', href: '#about' },
-  { key: 'footer.work', href: '#projects' },
-  { key: 'footer.process', href: '#process' },
-  { key: 'footer.services', href: '#services' },
-  { key: 'footer.resources', href: '#' },
-  { key: 'footer.contact', href: '#contact' },
+  { key: 'footer.about', href: '#about', newPage: false },
+  { key: 'footer.work', href: '#projects', newPage: false },
+  { key: 'footer.process', href: '#process', newPage: false },
+  { key: 'footer.services', href: '#services', newPage: false },
+  { key: 'footer.contact', href:"https://api.whatsapp.com/send?phone=51942466345&text=Hola Harold 👋.", newPage: true},
 ] as const;
 
 // REPLACE: real social links
 const socials = [
-  { name: 'YouTube', href: 'https://youtube.com/@' },
-  { name: 'LinkedIn', href: 'https://linkedin.com/in/' },
-  { name: 'Instagram', href: 'https://instagram.com/' },
+  // { name: 'YouTube', href: 'https://youtube.com/@' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/haroldom' },
+  { name: 'Instagram', href: 'https://instagram.com/sebaasom' },
+  { name: 'GitHub', href: 'https://github.com/haroldom' }
 ];
 ---
 
@@ -45,7 +45,7 @@ const socials = [
         {
           navLinks.map((link) => (
             <li>
-              <a class="footer__nav-link" href={link.href}>
+              <a class="footer__nav-link" href={link.href} target={link.newPage ? "_blank" : undefined} rel={link.newPage ? "noopener noreferrer" : undefined}>
                 <span class="serif">{t(link.key)}</span>
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 13 13 3M5.5 3H13v7.5" stroke="currentColor" stroke-width="1.3"></path>

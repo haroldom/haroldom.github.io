@@ -1,0 +1,706 @@
+<!-- Espaciado previo -->
+<div class="h-0 lg:h-[10vh] w-full"></div>
+
+<!-- Texto -->
+<section id="servicios" class="relative isolate overflow-hidden lg:h-lvh w-full flex flex-col items-start lg:items-center justify-center gap-4 lg:gap-8 px-6">
+
+    <!-- Texto fantasma gigante de fondo con parallax horizontal (solo desktop) -->
+    <div aria-hidden="true" class="hidden lg:block absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
+        <span id="services-ghost" class="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap font-aeonik font-medium uppercase leading-none text-[22vw] text-transparent services-ghost-stroke">Servicios — Orange — Servicios</span>
+    </div>
+
+    <!-- Metadata de esquinas (solo desktop) -->
+    <div id="services-meta-l" class="hidden lg:flex absolute bottom-10 left-10 items-center gap-3 font-space text-[11px] font-medium uppercase tracking-[0.2em] text-dark/40">
+        <span class="size-1.5 rounded-full bg-primary inline-block"></span>
+        <span>( 04 ) — Servicios Integrales</span>
+    </div>
+    <div id="services-meta-r" class="hidden lg:flex absolute bottom-10 right-10 items-center gap-3 font-space text-[11px] font-medium uppercase tracking-[0.2em] text-dark/40">
+        <span>Scroll para explorar</span>
+        <svg id="services-scroll-arrow" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" class="text-primary">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l6-6m-6 6l-6-6" />
+        </svg>
+    </div>
+
+    <div style="overflow: hidden;">
+        <div id="services-badge" class="flex items-center gap-2">
+            <svg
+                class="shrink-0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                    class="text-primary stroke-primary"></path>
+            </svg>
+            <span class="text-sm font-space text-dark uppercase">Nuestros Servicios</span>
+        </div>
+    </div>
+
+    <h2 id="services-title" class="text-4xl sm:text-5xl lg:text-7xl font-aeonik font-normal text-dark uppercase leading-[1.05] lg:leading-none text-left lg:text-center">
+        SOLUCIONES <span class="title-chip hidden lg:inline-flex align-middle h-[0.62em] w-0 mx-[0.04em] -translate-y-[0.06em] rounded-full overflow-hidden"><video class="chip-video h-full w-full object-cover scale-110" src="/videos/chip1.mp4" muted loop playsinline preload="none"></video></span> QUE<br />
+        CONECTAN <span class="font-medium">ORIGEN</span><br />
+        <span class="title-chip hidden lg:inline-flex align-middle h-[0.62em] w-0 mx-[0.04em] -translate-y-[0.06em] rounded-full overflow-hidden"><video class="chip-video h-full w-full object-cover scale-110" src="/videos/chip2.mp4" muted loop playsinline preload="none"></video></span> Y <span class="font-medium">DESTINO</span>
+    </h2>
+
+    <p id="services-para" class="text-sm sm:text-base font-aeonik font-light text-dark leading-snug text-left lg:text-center max-w-md">
+        Integramos <span class="font-medium">logística, transporte terrestre, flete marítimo y gestión aduanera</span> con soluciones eficientes para que tu carga llegue siempre a tiempo.
+    </p>
+
+</section>
+
+<!-- Videos -->
+<!-- lg: 2px más alto que el viewport — el pin queda con sangrado sub-pixel en
+     ambos bordes (las alturas svh fraccionarias dejaban un hairline en Mac) -->
+<div id="services-videos-wrap" class="lg:h-[calc(100lvh+2px)] lg:w-screen w-full flex items-center py-6 lg:py-0">
+    <div id="services-carousel" class="flex lg:flex-row items-stretch gap-3 max-w-350 mx-auto w-full overflow-x-auto py-6 overscroll-x-contain overscroll-y-auto snap-x snap-mandatory scroll-smooth lg:gap-0 lg:px-0 lg:max-w-none lg:py-0 lg:overflow-visible lg:h-[calc(100lvh+2px)] lg:snap-none">
+        <!-- Card 01 -->
+        <div class="service-card relative overflow-hidden flex-none w-[82vw] sm:w-[56vw] md:w-[44vw] snap-start lg:snap-align-none lg:w-auto lg:flex-1 h-[60svh] lg:h-[calc(100lvh+2px)]" data-index="0">
+            <video class="card-video absolute top-0 left-0 w-full h-full object-cover object-center scale-105 grayscale brightness-50" src="/videos/video1.mp4" muted loop playsinline preload="metadata"></video>
+            <div class="card-gradient absolute inset-0 pointer-events-none z-10 bg-linear-to-t from-dark/90 via-dark/40 to-transparent"></div>
+            <div class="absolute inset-0 z-20 flex flex-col justify-top p-4 lg:p-5">
+                <div class="flex items-start gap-3">
+                    <div>
+                        <div style="overflow:hidden;">
+                            <span class="card-num-inactive text-6xl lg:text-4xl font-aeonik font-normal text-light/30 leading-none block">01</span>
+                        </div>
+                        <div style="display:none;" class="card-num-active-wrap flex flex-col gap-1 w-fit">
+                            <div style="overflow:hidden;">
+                                <span class="card-num-active text-2xl lg:text-4xl font-aeonik font-normal text-light leading-none block">01</span>
+                            </div>
+                            <span class="card-num-line w-full h-[2px] bg-primary block" style="transform-origin: left center;"></span>
+                        </div>
+                    </div>
+                    <div class="card-category overflow-hidden pt-2 lg:pt-2.5">
+                        <span class="card-category-text block text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/70 uppercase leading-none">Servicio Logístico</span>
+                    </div>
+                </div>
+
+                <div class="card-content relative mt-12">
+                    <span class="card-title-inactive block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Gestión<br />Logística</span>
+                    <div class="card-active-content absolute top-0 lg:top-0 max-w-[19rem] lg:max-w-none lg:w-md flex flex-col gap-3">
+                        <span class="card-title-active block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Gestión<br />Logística</span>
+                        <p class="card-desc text-sm lg:text-[15px] font-aeonik font-light text-light/80 leading-[1.5] text-pretty lg:w-3/5">
+                            Gestionamos toda la cadena logística de exportación con procesos eficientes, planificación detallada y documentación validada en cada operación.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover-hint absolute bottom-4 left-4 lg:bottom-5 lg:left-5 flex items-center gap-2.5">
+                    <span class="card-hover-icon inline-flex items-center justify-center w-7 h-7 rounded-full border border-light/40 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-light">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>
+                    </span>
+                    <span class="card-hover-text text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/80 uppercase"><span class="hint-tap">Toca para reproducir</span><span class="hint-hover">Pasa el cursor</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="service-card relative overflow-hidden flex-none w-[82vw] sm:w-[56vw] md:w-[44vw] snap-start lg:snap-align-none lg:w-auto lg:flex-1 h-[60svh] lg:h-[calc(100lvh+2px)]" data-index="1">
+            <video class="card-video absolute top-0 left-0 w-full h-full object-cover object-center scale-105 grayscale brightness-50" src="/videos/video2.mp4" muted loop playsinline preload="metadata"></video>
+            <svg class="card-blob absolute inset-0 w-full h-full pointer-events-none z-10 rounded-2xl" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="card-blob-path" fill="white" d="M0,100 C20,100 40,100 60,100 C80,100 100,100 100,100 L100,100 L0,100 Z"/>
+            </svg>
+            <div class="absolute inset-0 z-20 flex flex-col justify-top p-4 lg:p-5">
+                <div class="flex items-start gap-3">
+                    <div>
+                        <div style="overflow:hidden;">
+                            <span class="card-num-inactive text-6xl lg:text-4xl font-aeonik font-normal text-light/30 leading-none block">02</span>
+                        </div>
+                        <div style="display:none;" class="card-num-active-wrap flex flex-col gap-1 w-fit">
+                            <div style="overflow:hidden;">
+                                <span class="card-num-active text-2xl lg:text-4xl font-aeonik font-normal text-light leading-none block">02</span>
+                            </div>
+                            <span class="card-num-line w-full h-[2px] bg-primary block" style="transform-origin: left center;"></span>
+                        </div>
+                    </div>
+                    <div class="card-category overflow-hidden pt-2 lg:pt-2.5">
+                        <span class="card-category-text block text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/70 uppercase leading-none">Servicio Terrestre</span>
+                    </div>
+                </div>
+                <div class="card-content relative mt-12">
+                    <span class="card-title-inactive block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Transporte<br />Terrestre</span>
+                    <div class="card-active-content absolute top-0 lg:top-0 max-w-[19rem] lg:max-w-none lg:w-md flex flex-col gap-3">
+                        <span class="card-title-active block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Transporte<br />Terrestre</span>
+                        <p class="card-desc text-sm lg:text-[15px] font-aeonik font-light text-light/80 leading-[1.5] text-pretty lg:w-3/5">
+                            Operamos mediante una red de transportistas homologados y unidades equipadas con GPS, garantizando trazabilidad, seguridad y entregas eficientes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover-hint absolute bottom-4 left-4 lg:bottom-5 lg:left-5 flex items-center gap-2.5">
+                    <span class="card-hover-icon inline-flex items-center justify-center w-7 h-7 rounded-full border border-light/40 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-light">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>
+                    </span>
+                    <span class="card-hover-text text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/80 uppercase"><span class="hint-tap">Toca para reproducir</span><span class="hint-hover">Pasa el cursor</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="service-card relative overflow-hidden flex-none w-[82vw] sm:w-[56vw] md:w-[44vw] snap-start lg:snap-align-none lg:w-auto lg:flex-1 h-[60svh] lg:h-[calc(100lvh+2px)]" data-index="2">
+            <video class="card-video absolute top-0 left-0 w-full h-full object-cover object-center scale-105 grayscale brightness-50" src="/videos/video3.mp4" muted loop playsinline preload="metadata"></video>
+            <svg class="card-blob absolute inset-0 w-full h-full pointer-events-none z-10 rounded-2xl" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="card-blob-path" fill="white" d="M0,100 C20,100 40,100 60,100 C80,100 100,100 100,100 L100,100 L0,100 Z"/>
+            </svg>
+            <div class="absolute inset-0 z-20 flex flex-col justify-top p-4 lg:p-5">
+                <div class="flex items-start gap-3">
+                    <div>
+                        <div style="overflow:hidden;">
+                            <span class="card-num-inactive text-6xl lg:text-4xl font-aeonik font-normal text-light/30 leading-none block">03</span>
+                        </div>
+                        <div style="display:none;" class="card-num-active-wrap flex flex-col gap-1 w-fit">
+                            <div style="overflow:hidden;">
+                                <span class="card-num-active text-2xl lg:text-4xl font-aeonik font-normal text-light leading-none block">03</span>
+                            </div>
+                            <span class="card-num-line w-full h-[2px] bg-primary block" style="transform-origin: left center;"></span>
+                        </div>
+                    </div>
+                    <div class="card-category overflow-hidden pt-2 lg:pt-2.5">
+                        <span class="card-category-text block text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/70 uppercase leading-none">Servicio Marítimo</span>
+                    </div>
+                </div>
+                <div class="card-content relative mt-12">
+                    <span class="card-title-inactive block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Flete<br />Marítimo</span>
+                    <div class="card-active-content absolute top-0 lg:top-0 max-w-[19rem] lg:max-w-none lg:w-md flex flex-col gap-3">
+                        <span class="card-title-active block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Flete<br />Marítimo</span>
+                        <p class="card-desc text-sm lg:text-[15px] font-aeonik font-light text-light/80 leading-[1.5] text-pretty lg:w-3/5">
+                            Coordinamos el flete marítimo internacional con navieras líderes, optimizando tiempos y costos mediante operaciones seguras y eficientes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover-hint absolute bottom-4 left-4 lg:bottom-5 lg:left-5 flex items-center gap-2.5">
+                    <span class="card-hover-icon inline-flex items-center justify-center w-7 h-7 rounded-full border border-light/40 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-light">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>
+                    </span>
+                    <span class="card-hover-text text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/80 uppercase"><span class="hint-tap">Toca para reproducir</span><span class="hint-hover">Pasa el cursor</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="service-card relative overflow-hidden flex-none w-[82vw] sm:w-[56vw] md:w-[44vw] snap-start lg:snap-align-none lg:w-auto lg:flex-1 h-[60svh] lg:h-[calc(100lvh+2px)]" data-index="3">
+            <video class="card-video absolute top-0 left-0 w-full h-full object-cover object-center scale-105 grayscale brightness-50" src="/videos/video4.mp4" muted loop playsinline preload="metadata"></video>
+            <svg class="card-blob absolute inset-0 w-full h-full pointer-events-none z-10 rounded-2xl" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="card-blob-path" fill="white" d="M0,100 C20,100 40,100 60,100 C80,100 100,100 100,100 L100,100 L0,100 Z"/>
+            </svg>
+            <div class="absolute inset-0 z-20 flex flex-col justify-top p-4 lg:p-5">
+                <div class="flex items-start gap-3">
+                    <div>
+                        <div style="overflow:hidden;">
+                            <span class="card-num-inactive text-6xl lg:text-4xl font-aeonik font-normal text-light/30 leading-none block">04</span>
+                        </div>
+                        <div style="display:none;" class="card-num-active-wrap flex flex-col gap-1 w-fit">
+                            <div style="overflow:hidden;">
+                                <span class="card-num-active text-2xl lg:text-4xl font-aeonik font-normal text-light leading-none block">04</span>
+                            </div>
+                            <span class="card-num-line w-full h-[2px] bg-primary block" style="transform-origin: left center;"></span>
+                        </div>
+                    </div>
+                    <div class="card-category overflow-hidden pt-2 lg:pt-2.5">
+                        <span class="card-category-text block text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/70 uppercase leading-none">Servicio Aduanero</span>
+                    </div>
+                </div>
+                <div class="card-content relative mt-12">
+                    <span class="card-title-inactive block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Gestión<br /> Aduanera</span>
+                    <div class="card-active-content absolute top-0 lg:top-0 max-w-[19rem] lg:max-w-none lg:w-md flex flex-col gap-3">
+                        <span class="card-title-active block text-xl sm:text-2xl lg:text-[30px] font-aeonik font-normal text-light leading-[0.95]">Gestión<br /> Aduanera</span>
+                        <p class="card-desc text-sm lg:text-[15px] font-aeonik font-light text-light/80 leading-[1.5] text-pretty lg:w-3/5">
+                            Nos encargamos de la documentación y trámites aduaneros para que tu carga cruce fronteras sin contratiempos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover-hint absolute bottom-4 left-4 lg:bottom-5 lg:left-5 flex items-center gap-2.5">
+                    <span class="card-hover-icon inline-flex items-center justify-center w-7 h-7 rounded-full border border-light/40 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-light">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>
+                    </span>
+                    <span class="card-hover-text text-[10px] lg:text-[11px] font-space font-medium tracking-[0.18em] text-light/80 uppercase"><span class="hint-tap">Toca para reproducir</span><span class="hint-hover">Pasa el cursor</span></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Controles del carrusel — solo layout compacto (< lg).
+     Mecanismo fiable de desplazamiento + indicador de posición que evidencia
+     que hay más servicios para explorar. -->
+<div id="services-nav" class="lg:hidden flex items-center justify-center gap-5 mt-1 px-6">
+    <button type="button" id="services-prev" aria-label="Servicio anterior"
+        class="services-arrow inline-flex items-center justify-center size-11 rounded-full border border-dark/20 text-dark transition-opacity duration-300 disabled:opacity-25">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+    </button>
+    <div id="services-dots" class="flex items-center gap-2"></div>
+    <button type="button" id="services-next" aria-label="Siguiente servicio"
+        class="services-arrow inline-flex items-center justify-center size-11 rounded-full border border-dark/20 text-dark transition-opacity duration-300 disabled:opacity-25">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+    </button>
+</div>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    // ─── Animación de texto intro ─────────────────────────────────────────────
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+        const titleSplit = new SplitText("#services-title", { type: "lines", mask: "lines" });
+        const paraSplit  = new SplitText("#services-para",  { type: "lines", mask: "lines" });
+        const chips = gsap.utils.toArray<HTMLElement>(".title-chip");
+
+        gsap.set("#services-badge", { yPercent: 110 });
+        gsap.set(titleSplit.lines,  { yPercent: 110 });
+        gsap.set(paraSplit.lines,   { yPercent: 110 });
+        gsap.set(chips,             { width: 0 });
+        gsap.set(["#services-meta-l", "#services-meta-r"], { autoAlpha: 0, y: 12 });
+
+        gsap.timeline({
+            scrollTrigger: { trigger: "#servicios", start: "top 75%", once: true }
+        })
+            .to("#services-badge", { yPercent: 0, duration: 0.6, ease: "power3.out" })
+            .to(titleSplit.lines,  { yPercent: 0, duration: 0.7, ease: "power3.out", stagger: 0.08 }, "-=0.3")
+            .to(paraSplit.lines,   { yPercent: 0, duration: 0.6, ease: "power3.out", stagger: 0.07 }, "<")
+            // Chips de video inline: se expanden empujando el texto del titular
+            .to(chips,             { width: "1.9em", duration: 1, ease: "expo.inOut", stagger: 0.14 }, "-=0.45")
+            .to(["#services-meta-l", "#services-meta-r"], { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 }, "-=0.5");
+
+        // Flecha "scroll" con vaivén perpetuo
+        gsap.to("#services-scroll-arrow", { y: 4, repeat: -1, yoyo: true, duration: 0.8, ease: "sine.inOut" });
+
+        // Texto fantasma: parallax horizontal mientras la sección cruza el viewport
+        gsap.fromTo("#services-ghost",
+            { x: "3vw" },
+            { x: "-20vw", ease: "none",
+                scrollTrigger: { trigger: "#servicios", start: "top bottom", end: "bottom top", scrub: 1 } }
+        );
+
+        // Reproducir los videos de los chips solo cuando la sección es visible
+        const chipVideos = Array.from(document.querySelectorAll<HTMLVideoElement>(".chip-video"));
+        const serviciosSection = document.getElementById("servicios");
+        if (serviciosSection && chipVideos.length) {
+            new IntersectionObserver((entries) => {
+                const visible = entries[0].isIntersecting;
+                chipVideos.forEach(v => visible ? v.play().catch(() => {}) : v.pause());
+            }, { threshold: 0.15 }).observe(serviciosSection);
+        }
+    }
+
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+
+    // Pin de la sección de videos en desktop: ocupa 100vh y se queda fija mientras
+    // el usuario scrollea ~100vh adicionales (tiempo para interactuar con las cards).
+    const videosWrapper = document.querySelector<HTMLElement>("#services-videos-wrap");
+    if (isDesktop && videosWrapper) {
+        ScrollTrigger.create({
+            trigger: videosWrapper,
+            // Las alturas vh de las secciones previas dejan el top del wrapper
+            // en una posición con decimales; con "top top" el pin quedaba esa
+            // fracción POR DEBAJO del borde y en Mac/retina se veía un hairline
+            // de ~1px arriba. Redondeamos hacia arriba: el pin sangra esa
+            // fracción por encima del viewport (invisible) en lugar de dejar hueco.
+            start: () => Math.ceil(videosWrapper.getBoundingClientRect().top + window.scrollY),
+            end: "+=100%",
+            pin: true,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+        });
+    }
+
+    // ─── Hover cards ─────────────────────────────────────────────────────────
+    let activeCard: HTMLElement | null = null;
+    const cardTimelines = new Map<HTMLElement, gsap.core.Timeline>();
+
+    // SplitText por card — se inicializa una vez al cargar
+    const titleInSplits = new Map<HTMLElement, SplitText>();
+    const titleActSplits = new Map<HTMLElement, SplitText>();
+    const descSplits = new Map<HTMLElement, SplitText>();
+    function buildSplits(card: HTMLElement) {
+        const tInEl  = card.querySelector<HTMLElement>(".card-title-inactive")!;
+        const tActEl = card.querySelector<HTMLElement>(".card-title-active")!;
+        const descEl = card.querySelector<HTMLElement>(".card-desc")!;
+
+        titleInSplits.get(card)?.revert();
+        titleActSplits.get(card)?.revert();
+        descSplits.get(card)?.revert();
+
+        const tInSplit  = new SplitText(tInEl,  { type: "lines", mask: "lines" });
+        const tActSplit = new SplitText(tActEl, { type: "lines", mask: "lines" });
+        const descSplit = new SplitText(descEl, { type: "lines", mask: "lines" });
+
+        gsap.set(tInSplit.lines,  { yPercent: 0 });
+        gsap.set(tActSplit.lines, { yPercent: 110 });
+        gsap.set(descSplit.lines, { yPercent: 110 });
+
+        titleInSplits.set(card, tInSplit);
+        titleActSplits.set(card, tActSplit);
+        descSplits.set(card, descSplit);
+    }
+
+    document.querySelectorAll<HTMLElement>(".service-card").forEach(card => {
+        buildSplits(card);
+    });
+
+    function getEls(card: HTMLElement) {
+        return {
+            video:      card.querySelector<HTMLElement>(".card-video")!,
+            numIn:      card.querySelector<HTMLElement>(".card-num-inactive")!,
+            numActWrap: card.querySelector<HTMLElement>(".card-num-active-wrap")!,
+            numAct:     card.querySelector<HTMLElement>(".card-num-active")!,
+            numLine:    card.querySelector<HTMLElement>(".card-num-line")!,
+            title:      card.querySelector<HTMLElement>(".card-title")!,
+            desc:       card.querySelector<HTMLElement>(".card-desc")!,
+            hoverHint:  card.querySelector<HTMLElement>(".card-hover-hint")!,
+        };
+    }
+
+    function killCard(card: HTMLElement) {
+        cardTimelines.get(card)?.kill();
+        cardTimelines.delete(card);
+        gsap.killTweensOf(card);
+        gsap.killTweensOf(card.querySelectorAll("*"));
+    }
+
+    function resetCard(card: HTMLElement) {
+        const { video, numIn, numActWrap, numAct, numLine, hoverHint } = getEls(card);
+        const tIn  = titleInSplits.get(card)!;
+        const tAct = titleActSplits.get(card)!;
+        const dSp  = descSplits.get(card)!;
+        (video as HTMLVideoElement).pause();
+        gsap.set(card,    { flexGrow: 1, scaleY: 1 });
+        gsap.set(video,   { filter: "brightness(0.5) grayscale(1)" });
+        gsap.set(numIn,   { yPercent: 0 });
+        numIn.closest("div")!.style.display = "block";
+        numActWrap.style.display = "none";
+        gsap.set(numAct,  { yPercent: 0 });
+        gsap.set(numLine, { scaleX: 0 });
+        gsap.set(tIn.lines,  { yPercent: 0 });
+        gsap.set(tAct.lines, { yPercent: 110 });
+        gsap.set(dSp.lines,  { yPercent: 110 });
+        if (hoverHint) gsap.set(hoverHint, { autoAlpha: 1, y: 0 });
+    }
+
+    function activateCard(card: HTMLElement) {
+        if (activeCard === card) return;
+        if (activeCard && activeCard !== card) {
+            deactivateCard(activeCard);
+        }
+        activeCard = card;
+
+        killCard(card);
+        const { video, numIn, numActWrap, numAct, numLine, hoverHint } = getEls(card);
+        const tIn  = titleInSplits.get(card)!;
+        const tAct = titleActSplits.get(card)!;
+        const dSp  = descSplits.get(card)!;
+        (video as HTMLVideoElement).play();
+
+        const isMobileCard = window.matchMedia("(max-width: 1023px)").matches;
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
+            .to(card,        isMobileCard
+                ? { duration: 0.6, ease: "power3.out" }
+                : { flexGrow: 1.6, duration: 0.6, ease: "power3.out" })
+            .to(video,       { filter: "brightness(1) grayscale(0)", duration: 0.4, ease: "power2.out" }, "<")
+            .to(hoverHint,   { autoAlpha: 0, y: 8, duration: 0.3, ease: "power2.in" }, "<")
+            .to(tIn.lines,   { yPercent: 110, duration: 0.3, ease: "power2.in", stagger: 0.04 }, "<")
+            .to(numIn,       { yPercent: 110, duration: 0.3 }, "<")
+            .call(() => {
+                const wasHidden = numActWrap.style.display === "none";
+                numIn.closest("div")!.style.display = "none";
+                numActWrap.style.display = "flex";
+                if (wasHidden) gsap.set(numAct, { yPercent: 110 });
+            }, [], "-=0.1")
+            .to(numAct,      { yPercent: 0, duration: 0.4 }, "<")
+            .to(numLine,     { scaleX: 1, duration: 0.4, ease: "power2.out" }, "<+=0.05")
+            .to(tAct.lines,  { yPercent: 0, duration: 0.5, ease: "power3.out", stagger: 0.06 }, "<")
+            .to(dSp.lines,   { yPercent: 0, duration: 0.5, ease: "power3.out", stagger: 0.05 }, "<+=0.1");
+
+        cardTimelines.set(card, tl);
+    }
+
+    function deactivateCard(card: HTMLElement) {
+        killCard(card);
+        const { video, numIn, numActWrap, numAct, numLine, hoverHint } = getEls(card);
+        const tIn  = titleInSplits.get(card)!;
+        const tAct = titleActSplits.get(card)!;
+        const dSp  = descSplits.get(card)!;
+        (video as HTMLVideoElement).pause();
+
+        const isMobileCard = window.matchMedia("(max-width: 1023px)").matches;
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
+            .to(card,        isMobileCard
+                ? { duration: 0.5, ease: "power2.out" }
+                : { flexGrow: 1, duration: 0.5, ease: "power2.out" })
+            .to(video,       { filter: "brightness(0.5) grayscale(1)", duration: 0.3, ease: "power2.in" }, "<")
+            .to(dSp.lines,   { yPercent: 110, duration: 0.25, ease: "power2.in", stagger: 0.03 }, "<")
+            .to(tAct.lines,  { yPercent: 110, duration: 0.25, ease: "power2.in", stagger: 0.03 }, "<")
+            .to(numLine,     { scaleX: 0, duration: 0.25, ease: "power2.in" }, "<")
+            .to(numAct,      { yPercent: 110, duration: 0.25, ease: "power2.in" }, "<")
+            .call(() => {
+                const wasVisible = numActWrap.style.display !== "none";
+                numActWrap.style.display = "none";
+                numIn.closest("div")!.style.display = "block";
+                if (wasVisible) gsap.set(numIn, { yPercent: 110 });
+            })
+            .to(numIn,       { yPercent: 0, duration: 0.3 })
+            .to(tIn.lines,   { yPercent: 0, duration: 0.35, ease: "power3.out", stagger: 0.04 }, "<")
+            .to(hoverHint,   { autoAlpha: 1, y: 0, duration: 0.35, ease: "power3.out" }, "<");
+
+        cardTimelines.set(card, tl);
+    }
+
+    // Modo de interacción decidido EN VIVO (no al cargar): hover en desktop con
+    // mouse; tap en el resto. Contempla dos casos que antes se rompían:
+    //  · Redimensionar desktop ⇆ tablet: el modo cambia sin recargar.
+    //  · Tablet con tamaño de pantalla desktop pero SIN cursor (touch): aunque
+    //    el ancho sea ≥1024, no hay hover posible, así que se usa tap.
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const wideMq = window.matchMedia("(min-width: 1024px)");
+    const hoverMode = () => wideMq.matches && finePointer.matches;
+
+    document.querySelectorAll<HTMLElement>(".service-card").forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            if (!hoverMode()) return;
+            activateCard(card);
+        });
+        card.addEventListener("mouseleave", () => {
+            if (!hoverMode()) return;
+            if (activeCard === card) activeCard = null;
+            deactivateCard(card);
+        });
+        card.addEventListener("click", () => {
+            if (hoverMode()) return; // con hover el click no togglea → evita doble efecto
+            if (activeCard === card) {
+                activeCard = null;
+                deactivateCard(card);
+                return;
+            }
+            if (activeCard) deactivateCard(activeCard);
+            activateCard(card);
+        });
+    });
+
+    // Al cruzar el breakpoint (o cambiar la capacidad de hover) reseteamos la
+    // card activa para que ninguna quede expandida/atascada tras el cambio.
+    let prevHoverMode = hoverMode();
+    const syncInteractionMode = () => {
+        const now = hoverMode();
+        if (now === prevHoverMode) return;
+        prevHoverMode = now;
+        if (activeCard) {
+            const c = activeCard;
+            activeCard = null;
+            deactivateCard(c);
+        }
+    };
+    wideMq.addEventListener("change", syncInteractionMode);
+    finePointer.addEventListener("change", syncInteractionMode);
+
+    // ─── Drag-to-scroll del carrusel (layout compacto < lg) ──────────────────
+    // En una ventana angosta de escritorio se ve el carrusel horizontal pero el
+    // mouse no puede desplazar un overflow-x (la rueda es vertical). Añadimos
+    // arrastre con el puntero solo para mouse; el touch ya hace pan nativo.
+    const carousel = document.querySelector<HTMLElement>("#services-carousel");
+    if (carousel) {
+        let isDown = false, startX = 0, startScroll = 0, moved = false;
+
+        // NO usamos setPointerCapture: capturar el puntero desvía el evento
+        // `click` al carrusel y las cards dejarían de activarse. En su lugar
+        // seguimos el arrastre con listeners a nivel de window.
+        carousel.addEventListener("pointerdown", (e) => {
+            if (e.pointerType !== "mouse") return;                         // touch: pan nativo
+            if (window.matchMedia("(min-width: 1024px)").matches) return;  // desktop: layout fijo
+            isDown = true;
+            moved = false;
+            startX = e.clientX;
+            startScroll = carousel.scrollLeft;
+        });
+
+        window.addEventListener("pointermove", (e) => {
+            if (!isDown) return;
+            const dx = e.clientX - startX;
+            if (Math.abs(dx) > 4) moved = true;
+            if (moved) {
+                // Durante el arrastre desactivamos el snap y el scroll suave: con
+                // ellos activos cada asignación de scrollLeft se anima/reajusta y
+                // el arrastre "no responde". Se restauran al soltar (re-snap).
+                carousel.style.scrollBehavior = "auto";
+                carousel.style.scrollSnapType = "none";
+                carousel.style.cursor = "grabbing";
+                carousel.scrollLeft = startScroll - dx;
+                e.preventDefault(); // evita selección de texto durante el arrastre
+            }
+        });
+
+        const endDrag = () => {
+            if (!isDown) return;
+            isDown = false;
+            carousel.style.cursor = "";
+            // Restaurar snap + scroll suave: el navegador reajusta a la card más
+            // cercana automáticamente al reactivar scroll-snap-type: mandatory.
+            carousel.style.scrollBehavior = "";
+            carousel.style.scrollSnapType = "";
+        };
+        window.addEventListener("pointerup", endDrag);
+        window.addEventListener("pointercancel", endDrag);
+
+        // Un arrastre real (moved) no debe disparar el toggle de la card;
+        // un click limpio (sin arrastre) pasa intacto.
+        carousel.addEventListener("click", (e) => {
+            if (moved) {
+                e.stopPropagation();
+                e.preventDefault();
+                moved = false;
+            }
+        }, true);
+    }
+
+    // ─── Botones prev/next + dots (layout compacto) ──────────────────────────
+    // Los dots representan PÁGINAS de scroll reales, no cards: en tablet caben
+    // ~2 cards por pantalla, así que las posiciones de snap alcanzables son
+    // menos que la cantidad de cards. Modelarlas por página garantiza que el
+    // último dot SIEMPRE sea alcanzable (antes el 4º nunca se activaba porque
+    // la última card jamás quedaba sola al inicio del scroll).
+    const nav = document.querySelector<HTMLElement>("#services-nav");
+    const navCards = Array.from(document.querySelectorAll<HTMLElement>(".service-card"));
+    if (carousel && nav && navCards.length) {
+        const prevBtn = nav.querySelector<HTMLButtonElement>("#services-prev")!;
+        const nextBtn = nav.querySelector<HTMLButtonElement>("#services-next")!;
+        const dotsWrap = nav.querySelector<HTMLElement>("#services-dots")!;
+
+        // Posiciones de scroll (una por página): 0, 1 paso, 2 pasos… y el máximo.
+        function pagePositions(): number[] {
+            const max = carousel.scrollWidth - carousel.clientWidth;
+            if (max <= 1) return [0];
+            const gap = parseFloat(getComputedStyle(carousel).columnGap || "0") || 12;
+            const step = navCards[0].getBoundingClientRect().width + gap;
+            const pos: number[] = [];
+            for (let x = 0; x < max - 1; x += step) pos.push(x);
+            pos.push(max); // última página: alinea el final del carrusel
+            return pos;
+        }
+
+        function activeIndex(pos: number[]): number {
+            const sl = carousel.scrollLeft;
+            let best = 0, bestD = Infinity;
+            pos.forEach((p, i) => { const d = Math.abs(p - sl); if (d < bestD) { bestD = d; best = i; } });
+            return best;
+        }
+
+        function goTo(i: number) {
+            const pos = pagePositions();
+            const idx = Math.max(0, Math.min(pos.length - 1, i));
+            carousel.scrollTo({ left: pos[idx], behavior: "smooth" });
+        }
+
+        // Ajusta la cantidad de elementos-dot para que coincida con las páginas.
+        function ensureDots(count: number) {
+            while (dotsWrap.children.length < count) {
+                const d = document.createElement("button");
+                d.type = "button";
+                d.className = "services-dot h-1.5 rounded-full bg-dark/20 transition-all duration-300";
+                d.style.width = "6px";
+                d.addEventListener("click", () => goTo([...dotsWrap.children].indexOf(d)));
+                dotsWrap.appendChild(d);
+            }
+            while (dotsWrap.children.length > count) dotsWrap.lastElementChild!.remove();
+        }
+
+        function updateNav() {
+            const pos = pagePositions();
+            ensureDots(pos.length);
+            const idx = activeIndex(pos);
+            Array.from(dotsWrap.children).forEach((d, i) => {
+                const el = d as HTMLElement;
+                const active = i === idx;
+                el.style.width = active ? "22px" : "6px";
+                el.classList.toggle("bg-primary", active);
+                el.classList.toggle("bg-dark/20", !active);
+                el.setAttribute("aria-label", `Ir a la página ${i + 1}`);
+            });
+            prevBtn.disabled = idx <= 0;
+            nextBtn.disabled = idx >= pos.length - 1;
+        }
+
+        prevBtn.addEventListener("click", () => goTo(activeIndex(pagePositions()) - 1));
+        nextBtn.addEventListener("click", () => goTo(activeIndex(pagePositions()) + 1));
+        carousel.addEventListener("scroll", () => requestAnimationFrame(updateNav), { passive: true });
+        window.addEventListener("resize", () => requestAnimationFrame(updateNav));
+        updateNav();
+    }
+</script>
+
+<style>
+    .service-card {
+        isolation: isolate;
+        transform: translateZ(0);
+    }
+
+    /* Hint de interacción alineado con el modo REAL (no solo el ancho):
+       "Pasa el cursor" únicamente cuando hay hover fino Y ancho desktop;
+       de lo contrario "Toca para reproducir" (incluye tablets tamaño desktop
+       sin cursor). */
+    .hint-hover { display: none; }
+    .hint-tap { display: inline; }
+    @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+        .hint-hover { display: inline; }
+        .hint-tap { display: none; }
+    }
+
+    /* Texto fantasma de fondo: solo contorno, casi imperceptible */
+    .services-ghost-stroke {
+        -webkit-text-stroke: 1.5px rgba(13, 12, 9, 0.07);
+        will-change: transform;
+    }
+
+    /* Los chips de video parten cerrados; GSAP los expande tras el reveal del titular */
+    .title-chip {
+        will-change: width;
+    }
+
+    /* Oculta la scrollbar del carrusel mobile (todas las plataformas) */
+    #services-carousel {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge legacy */
+    }
+    #services-carousel::-webkit-scrollbar {
+        display: none; /* Chrome/Safari/Opera */
+    }
+
+    /* Slider mobile: padding lateral 1.5rem (= px-6 del proyecto) para que
+       las cards queden alineadas con los textos del resto de la página.
+       scroll-padding-inline asegura que el snap-start respete ese offset. */
+    @media (max-width: 1023px) {
+        #services-carousel {
+            padding-inline: 1.5rem;
+            scroll-padding-inline: 1.5rem;
+        }
+        /* Pista de arrastre para punteros finos (mouse en ventana angosta).
+           En táctil el pan nativo hace este cursor irrelevante. */
+        @media (pointer: fine) {
+            #services-carousel {
+                cursor: grab;
+            }
+        }
+    }
+</style>
