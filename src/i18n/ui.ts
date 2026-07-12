@@ -94,8 +94,21 @@ export const ui = {
     'services.04.desc': 'Fast, responsive and built to scale.',
     'services.05.title': '3D Development',
     'services.05.desc': 'Define your value, position and message.',
-    'services.testimonial':
-      'Harold has a sharp eye for design and a deep understanding of what makes a brand stand out.',
+    'services.testimonial.01':
+      'Harold has demonstrated responsibility, commitment, and an excellent willingness to learn. He performed his duties efficiently, contributed technological solutions, and consistently maintained a proactive and professional attitude.',
+
+    // achievements
+    'achievements.label': 'Recognition',
+    'achievements.heading': 'Achievements.',
+    'achievements.01.title': 'Academic Excellence Award',
+    'achievements.01.meta': 'High school',
+    'achievements.02.title': 'First place — Class of 2023',
+    'achievements.02.meta': '2023',
+    'achievements.03.title': 'Top-tenth of class, Systems Engineering',
+    'achievements.03.meta': 'UNICA · ongoing',
+    'achievements.favorite.quote': 'He who knows his purpose can endure almost any challenge.<br />Let your only competition be the person you were yesterday.',
+    'achievements.favorite.label': 'My philosophy',
+    
 
     // footer
     'footer.navigation': 'Navigation',
@@ -110,7 +123,6 @@ export const ui = {
     'footer.resources': 'Resources',
     'footer.contact': 'Contact',
     'footer.localTime': 'Local time',
-    'footer.backToTop': 'Back to top',
     'footer.booking': 'Booking projects for Q3 2026',
     'footer.rights': 'All rights reserved.',
     'footer.blurb':
@@ -202,8 +214,20 @@ export const ui = {
     'services.04.desc': 'Rápido, responsivo y hecho para escalar.',
     'services.05.title': 'Desarrollo 3D',
     'services.05.desc': 'Define tu valor, posicionamiento y mensaje.',
-    'services.testimonial':
-      'Harold tiene un ojo agudo para el diseño y un entendimiento profundo de lo que hace destacar a una marca.',
+    'services.testimonial.01':
+      'Harold ha demostrado responsabilidad, compromiso y una excelente disposición para aprender. Cumplió sus funciones de manera eficiente, aportó soluciones tecnológicas y mantuvo siempre una actitud proactiva y profesional.',
+
+    // achievements
+    'achievements.label': 'Reconocimientos',
+    'achievements.heading': 'Logros.',
+    'achievements.01.title': 'Premio a la excelencia académica',
+    'achievements.01.meta': 'Secundaria',
+    'achievements.02.title': 'Primer puesto — Promoción 2023',
+    'achievements.02.meta': '2023',
+    'achievements.03.title': 'Décimo superior, Ing. de Sistemas',
+    'achievements.03.meta': 'UNICA · en curso',
+    'achievements.favorite.quote': 'El que conoce su propósito puede soportar casi cualquier desafío.<br />Deja que tu única competencia sea la persona que fuiste ayer.',
+    'achievements.favorite.label': 'Mi filosofía',
 
     // footer
     'footer.navigation': 'Navegación',
@@ -218,7 +242,6 @@ export const ui = {
     'footer.resources': 'Recursos',
     'footer.contact': 'Contacto',
     'footer.localTime': 'Hora local',
-    'footer.backToTop': 'Volver arriba',
     'footer.booking': 'Agendando proyectos para Q3 2026',
     'footer.rights': 'Todos los derechos reservados.',
     'footer.blurb':

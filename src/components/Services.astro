@@ -17,9 +17,10 @@ const services = [1, 2, 3, 4, 5].map((n) => ({
 
 // REPLACE: real testimonials
 const testimonials = [
-  { quote: t('services.testimonial'), name: 'Michael R.', role: 'Founder, Elevate Studio' },
-  { quote: t('services.testimonial'), name: 'Daniela P.', role: 'CEO, Nova Brands' },
-  { quote: t('services.testimonial'), name: 'Jorge M.', role: 'CMO, Andina Foods' },
+  { quote: t('services.testimonial.01'), name: 'Gustavo Marquez', role: 'Co-founder, Collie Valley', image: '/images/testimonials/gustavo.png' },
+  { quote: t('services.testimonial.01'), name: 'Luis Uculmana', role: 'Software Engineer', image: '/images/testimonials/luis.jpg' },
+  { quote: t('services.testimonial.01'), name: 'Gina Alarcón', role: 'Ops. Mgr, Orange Logistic', image: '/images/testimonials/gina-alarcon.webp' },
+  { quote: t('services.testimonial.01'), name: 'Johanna Barrientos', role: 'Com. Mgr, Orange Logistic', image: '/images/testimonials/johanna-barrientos.webp' },
 ];
 ---
 
@@ -43,7 +44,7 @@ const testimonials = [
                   <figcaption class="services__quote-by">
                     <img
                       class="services__avatar"
-                      src="/placeholders/avatar.svg"
+                      src={item.image}
                       alt=""
                       width="40"
                       height="40"
@@ -162,6 +163,7 @@ const testimonials = [
   }
 
   .services__avatar {
+    object-fit: cover;
     border-radius: 50%;
   }
 

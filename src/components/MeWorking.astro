@@ -1,0 +1,200 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const awards = [
+  {
+    title: t('achievements.01.title'),
+    meta: t('achievements.01.meta'),
+    img: '/images/awards/academicexcellence.webp',
+  },
+  {
+    title: t('achievements.02.title'),
+    meta: t('achievements.02.meta'),
+    img: '/images/awards/firstplace.webp',
+  },
+  {
+    title: t('achievements.03.title'),
+    meta: t('achievements.03.meta'),
+    img: '/images/awards/toptenth.webp',
+  },
+];
+
+---
+
+<!-- full-bleed photo revealed after the Services dive lands on black,
+     with the achievements laid over it as festival laurels -->
+<section class="mework" aria-label="Achievements">
+  <div class="mework__clip">
+    <img
+      src="/images/meworking.webp"
+      alt="Harold working at his desk"
+      width="1023"
+      height="1537"
+      loading="lazy"
+    />
+    <div class="mework__shade" aria-hidden="true"></div>
+
+    <div class="mework__laurels">
+      {
+        awards.map((award) => (
+          <img class="mework__award-img" src={award.img} alt={award.title} loading="lazy" />
+        ))
+      }
+    </div>
+
+    <div class="mework__quote">
+      <p class="mework__quote-text" set:html={t('achievements.favorite.quote')}></p>
+      <span class="mework__quote-label">{t('achievements.favorite.label')}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mework {
+    background: var(--c-black);
+    overflow: clip;
+  }
+
+  .mework__clip {
+    position: relative;
+    overflow: clip;
+  }
+
+  .mework__clip img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.05);
+    will-change: transform, clip-path;
+  }
+
+  /* darkening veil so the laurels stay legible over the photo */
+  .mework__shade {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(6, 6, 6, 0.55) 0%,
+      rgba(6, 6, 6, 0.25) 55%,
+      rgba(6, 6, 6, 0.45) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* --- laurels overlay, centered on the photo --- */
+  .mework__laurels {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    padding-inline: var(--gutter);
+  }
+
+  .mework__clip .mework__award-img {
+    width: clamp(144px, 16.4vw, 237px);
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 3px;
+  }
+
+  .mework__quote {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--c-white);
+    width: 90%;
+    max-width: 520px;
+  }
+
+  .mework__quote-text {
+    font-size: clamp(0.85rem, 1.4vw, 1.15rem);
+    line-height: 1.7;
+    font-style: italic;
+    opacity: 0.92;
+    margin-bottom: 0.75rem;
+  }
+
+  .mework__quote-label {
+    font-size: clamp(0.65rem, 1vw, 0.8rem);
+    opacity: 0.55;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
+
+  onReady(() => {
+    if (reducedMotion) return;
+
+    const section = document.querySelector<HTMLElement>('.mework');
+    const img = section?.querySelector('img');
+    if (!section || !img) return;
+
+    /* the photo opens out of the black the dive landed on */
+    gsap.fromTo(
+      img,
+      { clipPath: 'inset(16% 8% 16% 8%)', scale: 1.14 },
+      {
+        clipPath: 'inset(0% 0% 0% 0%)',
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 95%',
+          end: 'top 10%',
+          scrub: true,
+        },
+      }
+    );
+
+    /* laurels rise in once the photo is on stage */
+    gsap.fromTo(
+      '.mework__award-img',
+      { opacity: 0, y: 34 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        stagger: 0.14,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: '.mework__laurels',
+          start: 'top 75%',
+          once: true,
+        },
+      }
+    );
+
+    /* quote fades in after the awards */
+    gsap.fromTo(
+      '.mework__quote',
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.6,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: '.mework__laurels',
+          start: 'top 75%',
+          once: true,
+        },
+      }
+    );
+  });
+</script>

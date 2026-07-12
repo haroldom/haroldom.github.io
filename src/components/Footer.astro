@@ -117,23 +117,6 @@ const socials = [
       <p class="small muted" data-clock-date></p>
     </div>
 
-    <div class="footer__top">
-      <button
-        class="footer__top-btn"
-        data-back-to-top
-        data-magnetic
-        aria-label={t('footer.backToTop')}
-      >
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M9 15V3M3.5 8.5 9 3l5.5 5.5" stroke="currentColor" stroke-width="1.4"></path>
-        </svg>
-      </button>
-      <div>
-        <p class="footer__top-label">{t('footer.backToTop')}</p>
-        <p class="small muted">{t('footer.booking')}</p>
-      </div>
-    </div>
-
     <div class="footer__legal">
       <p class="small muted">© {year} Harold Ormeño</p>
       <p class="small muted">{t('footer.rights')}</p>
@@ -376,11 +359,5 @@ const socials = [
     tick();
     setInterval(tick, 1000);
 
-    /* back to top through Lenis */
-    document.querySelector('[data-back-to-top]')?.addEventListener('click', () => {
-      const lenis = getLenis();
-      if (lenis) lenis.scrollTo(0, { duration: 1.8 });
-      else window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
   });
 </script>

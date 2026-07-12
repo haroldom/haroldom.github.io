@@ -40,10 +40,17 @@ const t = useTranslations(lang);
     <img src="/images/profile.webp" alt="Portrait of Harold Ormeño" width="1023" height="1537" />
   </div>
 
-  <!-- giant name -->
-  <div class="hero__name-mask" aria-hidden="false">
-    <h1 class="hero__name serif" data-hero="name">Harold&nbsp;Orme&ntilde;o</h1>
-  </div>
+  <!-- giant name — infinite horizontal marquee -->
+  <h1 class="hero__name-mask" aria-label="Harold Ormeño">
+    <span class="hero__name-inner" data-hero="name" aria-hidden="true">
+      <span class="hero__marquee">
+        <span class="hero__name serif">Harold&nbsp;Orme&ntilde;o</span>
+        <span class="hero__name serif">Harold&nbsp;Orme&ntilde;o</span>
+        <span class="hero__name serif">Harold&nbsp;Orme&ntilde;o</span>
+        <span class="hero__name serif">Harold&nbsp;Orme&ntilde;o</span>
+      </span>
+    </span>
+  </h1>
 
   <!-- bottom row -->
   <div class="hero__bottom container">
@@ -156,7 +163,7 @@ const t = useTranslations(lang);
     filter: grayscale(1) contrast(1.05);
   }
 
-  /* --- giant name --- */
+  /* --- giant name: infinite horizontal marquee --- */
   .hero__name-mask {
     position: absolute;
     top: 42%;
@@ -165,17 +172,42 @@ const t = useTranslations(lang);
     overflow: clip;
     z-index: 2;
     pointer-events: none;
+    display: block;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero__name-inner {
+    display: block;
+    will-change: transform;
+  }
+
+  .hero__marquee {
     display: flex;
-    justify-content: center;
+    width: max-content;
+    animation: hero-marquee 26s linear infinite;
+    will-change: transform;
   }
 
   .hero__name {
+    display: block;
     font-size: var(--fs-hero);
     font-weight: 400;
     line-height: 0.94;
     letter-spacing: -0.015em;
     white-space: nowrap;
     text-transform: uppercase;
+    padding-right: 0.14em; /* seam gap between repeats */
+  }
+
+  /* -50% == two of the four identical copies → seamless wrap */
+  @keyframes hero-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   /* --- bottom row --- */
@@ -323,7 +355,7 @@ const t = useTranslations(lang);
     opacity: 0;
   }
 
-  html.js .hero__name {
+  html.js .hero__name-inner {
     transform: translateY(110%);
   }
 
@@ -336,8 +368,11 @@ const t = useTranslations(lang);
     html.js .navpill {
       opacity: 1;
     }
-    html.js .hero__name {
+    html.js .hero__name-inner {
       transform: none;
+    }
+    .hero__marquee {
+      animation: none !important;
     }
     html.js .hero__portrait {
       clip-path: none;
@@ -361,7 +396,7 @@ const t = useTranslations(lang);
     /* intro timeline */
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
-    tl.to('.hero__name', { y: 0, duration: 1.6 }, 0.2)
+    tl.to('.hero__name-inner', { y: 0, duration: 1.6 }, 0.2)
       .to(
         '.hero__portrait',
         { clipPath: 'inset(0% 0 0 0)', duration: 1.6, ease: 'expo.inOut' },
@@ -375,7 +410,7 @@ const t = useTranslations(lang);
       .to('.navpill', { opacity: 1, duration: 1 }, 1.1);
 
     /* scroll parallax: name drifts down slower, portrait scales */
-    gsap.to('.hero__name', {
+    gsap.to('.hero__name-mask', {
       yPercent: 35,
       ease: 'none',
       scrollTrigger: {

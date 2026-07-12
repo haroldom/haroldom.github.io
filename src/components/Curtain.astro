@@ -10,15 +10,10 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<!-- monumental type transition: the word fills the viewport edge to edge
-     (same treatment as the hero name), a work card floats behind it, and
-     the camera dives through the full stop into the black of Services -->
+<!-- monumental type transition: the word fills the viewport edge to edge,
+     dead-centered, and the camera dives through the full stop into black -->
 <section class="curtain">
   <div class="curtain__sticky">
-    <div class="curtain__card ph-media" aria-hidden="true">
-      <img src="/images/project5.webp" alt="" width="1600" height="900" loading="lazy" />
-    </div>
-
     <svg
       class="curtain__svg"
       viewBox="0 0 1440 720"
@@ -53,32 +48,11 @@ const t = useTranslations(lang);
     background: var(--c-paper);
   }
 
-  /* work card floating behind the type — the projects motif */
-  .curtain__card {
-    position: absolute;
-    right: 10%;
-    top: 16%;
-    width: min(26vw, 400px);
-    aspect-ratio: 16 / 10;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
-    z-index: 0;
-    will-change: transform;
-  }
-
-  .curtain__card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   .curtain__svg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 
   .curtain__text {
@@ -117,26 +91,36 @@ const t = useTranslations(lang);
     if (reducedMotion) return;
 
     const section = document.querySelector<HTMLElement>('.curtain');
+    const sticky = document.querySelector<HTMLElement>('.curtain__sticky');
     const svg = document.querySelector<SVGSVGElement>('.curtain__svg');
     const wordG = document.querySelector<SVGGElement>('.curtain__word-g');
     const text = document.querySelector<SVGTextElement>('.curtain__text');
     const dot = document.querySelector<SVGCircleElement>('.curtain__dot');
-    const card = document.querySelector<HTMLElement>('.curtain__card');
-    if (!section || !svg || !wordG || !text || !dot || !card) return;
+    if (!section || !sticky || !svg || !wordG || !text || !dot) return;
 
-    /* size the word so word + full stop span the viewBox edge to edge
+    /* match the viewBox to the real viewport aspect so the word can be
+       measured edge-to-edge and dead-centered vertically */
+    const W = 1440;
+    const H = Math.round((W * sticky.clientHeight) / sticky.clientWidth);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+    /* size the word so word + full stop span the width edge to edge
        (fonts are loaded here, so measurements are exact) */
     const r = 18;
     const dotAdvance = 30 + r * 2; // gap + dot width
     const probe = text.getBBox();
-    const fs = Math.min(440, (300 * (1420 - dotAdvance)) / probe.width);
+    const fs = (300 * (W - 24 - dotAdvance)) / probe.width;
     text.setAttribute('font-size', String(fs));
-    text.setAttribute('x', String(720 - dotAdvance / 2));
-    text.setAttribute('y', String(360 + fs * 0.33));
+    text.setAttribute('x', String(W / 2 - dotAdvance / 2));
+    text.setAttribute('y', '0');
 
     const bbox = text.getBBox();
+    const centerOff = bbox.y + bbox.height / 2;
+    const y = H / 2 - centerOff;
+    text.setAttribute('y', String(y));
+
     const cx = bbox.x + bbox.width + 30 + r;
-    const cy = 360 + fs * 0.33 - r;
+    const cy = y - r;
     dot.setAttribute('cx', String(cx));
     dot.setAttribute('cy', String(cy));
 
@@ -156,28 +140,20 @@ const t = useTranslations(lang);
     tl.fromTo(
       wordG,
       { y: 44, transformOrigin: '50% 50%' },
-      { y: 0, duration: 0.12, ease: 'power2.out' },
-      0
-    );
-
-    /* the work card drifts slowly behind the type (depth) and tilts */
-    tl.fromTo(
-      card,
-      { rotation: -9, y: 30 },
-      { rotation: -4, y: -60, duration: 0.7, ease: 'none' },
+      { y: 0, duration: 0.1, ease: 'power2.out' },
       0
     );
 
     /* accelerating vector dive through the full stop — the ink swallows
-       the screen and lands on the black of the next section */
+       the screen and lands on black */
     tl.fromTo(
       svg,
-      { attr: { viewBox: '0 0 1440 720' } },
-      { attr: { viewBox: finalView }, duration: 0.83, ease: 'power2.in' },
-      0.12
+      { attr: { viewBox: `0 0 ${W} ${H}` } },
+      { attr: { viewBox: finalView }, duration: 0.85, ease: 'power2.in' },
+      0.1
     );
 
-    /* short hold on black before the release into Services */
+    /* short hold on black before the reveal that follows */
     tl.to({}, { duration: 0.05 }, 0.95);
   });
 </script>
