@@ -14,6 +14,9 @@ export const ui = {
         "meta.description":
             "Web design, branding and development. I create digital experiences that are visually refined, technically solid, and designed to grow with your business.",
 
+        // cv
+        "cv.url": "Harold_CV_EN.pdf",
+
         // nav
         "nav.menu": "Menu",
         "nav.about": "About",
@@ -110,6 +113,7 @@ export const ui = {
             "Three-dimensional elements that add depth, interaction, and personality.",
         "services.testimonial.01":
             "Harold has demonstrated responsibility, commitment, and an excellent willingness to learn. He performed his duties efficiently, contributed technological solutions, and consistently maintained a proactive and professional attitude.",
+        "services.testimonial.02": "Harold stands out for his maturity and resilience. Beyond his ability to learn quickly and his technical initiative in implementing tools, his dedication and team spirit added immense value to the comprehensive development of our ERP system.",
 
         // achievements
         "achievements.label": "Recognition",
@@ -147,6 +151,9 @@ export const ui = {
         "meta.title": "Harold Ormeño — Desarrollador y Diseñador Freelance",
         "meta.description":
             "Diseño web, branding y desarrollo. Creo experiencias digitales visualmente refinadas, técnicamente sólidas y diseñadas para hacer crecer tu negocio.",
+
+        // CV
+        "cv.url": "Harold_CV_ES.pdf",
 
         // nav
         "nav.menu": "Menú",
@@ -244,6 +251,7 @@ export const ui = {
             "Elementos tridimensionales que aportan profundidad, interacción y personalidad.",
         "services.testimonial.01":
             "Harold ha demostrado responsabilidad, compromiso y una excelente disposición para aprender. Cumplió sus funciones de manera eficiente, aportó soluciones tecnológicas y mantuvo siempre una actitud proactiva y profesional.",
+        "services.testimonial.02": "Harold destaca por su madurez y capacidad de superación. Más allá de su rápido aprendizaje e iniciativa técnica al implementar herramientas, su dedicación y compañerismo aportaron un valor inmenso en la construcción integral de nuestro sistema ERP.",
 
         // achievements
         "achievements.label": "Reconocimientos",
@@ -265,7 +273,7 @@ export const ui = {
         "footer.based": "Desde Ica, Perú.",
         "footer.working": "Trabajando para el mundo",
         "footer.about": "Sobre mí",
-        "footer.work": "Trabajo",
+        "footer.work": "Proyectos",
         "footer.process": "Proceso",
         "footer.services": "Servicios",
         "footer.resources": "Recursos",

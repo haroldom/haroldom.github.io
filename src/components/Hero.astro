@@ -17,13 +17,13 @@ const t = useTranslations(lang);
       <img src="/images/logo.webp" alt="" width="364" height="365" />
     </a>
     <div class="hero__bar-actions">
-      <a class="btn-pill btn-pill--solid" href="#contact" data-hero="fade" data-magnetic="0.3">
+      <a class="btn-pill btn-pill--solid" href="https://cal.com/haroldom" target="_blank" data-hero="fade" data-magnetic="0.3">
         {t('nav.bookCall')}
         <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M1.5 10.5 10.5 1.5M4 1.5h6.5V8" stroke="currentColor" stroke-width="1.5"></path>
         </svg>
       </a>
-      <a class="btn-pill btn-pill--outline" href="/cv.pdf" download data-hero="fade" data-magnetic="0.3">
+      <a class="btn-pill btn-pill--outline" href={`/cvs/${t('cv.url')}`} download data-hero="fade" data-magnetic="0.3">
         {t('nav.cv')}
       </a>
     </div>
@@ -69,7 +69,7 @@ const t = useTranslations(lang);
       </p>
       <div class="hero__cta-row">
         <p class="hero__cta-text">{t('hero.cta')}</p>
-        <a class="hero__cta-btn" href="#contact" aria-label={t('nav.bookCall')} data-magnetic>
+        <a class="hero__cta-btn" href="https://cal.com/haroldom" target="_blank" aria-label={t('nav.bookCall')} data-magnetic>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.4"></path>
           </svg>

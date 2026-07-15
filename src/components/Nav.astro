@@ -16,14 +16,14 @@ const exploreLinks = [
   { label: t('nav.projects'), href: '#projects' },
   { label: t('nav.process'), href: '#process' },
   { label: t('nav.services'), href: '#services' },
-  { label: t('footer.contact'), href: '#contact' },
+  { label: t('footer.contact'), href: 'https://cal.com/haroldom' },
 ];
 
 // REPLACE: real social links
 const followLinks = [
-  { label: 'YouTube', href: 'https://youtube.com/@' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/' },
-  { label: 'Instagram', href: 'https://instagram.com/' },
+  { label: 'Github', href: 'https://github.com/haroldom' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/haroldom' },
+  { label: 'Instagram', href: 'https://instagram.com/sebaasom' },
 ];
 ---
 
@@ -66,13 +66,13 @@ const followLinks = [
 
   <div class="menu-panel__col">
     <p class="label muted">{t('menu.touch')}</p>
-    <a class="menu-panel__cta" href="#contact" data-menu-link>
+    <a class="menu-panel__cta" href="https://cal.com/haroldom" target="_blank" data-menu-link>
       {t('nav.bookCall')}
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M2 9h13M10 3.5 15.5 9 10 14.5" stroke="currentColor" stroke-width="1.5"></path>
       </svg>
     </a>
-    <a class="menu-panel__link" href="/cv.pdf" download style="margin-top: 0.5rem; display: inline-block;">
+    <a class="menu-panel__link" href={`/cvs/${t('cv.url')}`} download style="margin-top: 0.5rem; display: inline-block;">
       {t('nav.cv')}
     </a>
   </div>

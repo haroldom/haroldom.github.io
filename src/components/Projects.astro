@@ -14,27 +14,28 @@ const projects = [
   {
     title: 'Orange Logistics',
     meta: t('projects.01.meta'),
-    href: '#',
+    href: 'https://orangelogisticperu.com/',
     preview: '/images/project1.webp',
+    video: '/videos/project1.mp4',
   },
   {
     title: 'Collie Valley',
     meta: t('projects.02.meta'),
-    href: '#',
+    href: 'https://lnkd.in/p/e_ZE8JwX',
     preview: '/images/project2.webp',
-  },
-  {
-    title: 'Khipu',
-    meta: t('projects.03.meta'),
-    href: '#',
-    preview: '/images/project3.webp',
   },
   {
     title: 'Treepilot',
     meta: t('projects.04.meta'),
-    href: '#',
+    href: 'https://betatreepilot.netlify.app/login',
     preview: '/images/project4.webp',
   },
+  {
+    title: 'Khipu',
+    meta: t('projects.03.meta'),
+    href: 'https://mykhipu.vercel.app/login',
+    preview: '/images/project3.webp',
+  }
 ];
 ---
 
@@ -47,19 +48,21 @@ const projects = [
         {
           projects.map((p, i) => (
             <li
-              class:list={['projects__item', { 'is-active': i === 0 }]}
+              class:list={['projects__item']}
               data-index={i}
               data-preview={p.preview}
+              data-video={p.video || ''}
               data-tilt={i % 2 === 0 ? -7 : 7}
             >
-              <a class="projects__link" href={p.href}>
-                <svg class="projects__arrow" width="70" height="41" viewBox="0 0 70 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M46.6667 0C46.6667 2.16417 48.8046 5.39583 50.9687 8.10833C53.7512 11.6083 57.0762 14.6621 60.8883 16.9925C63.7467 18.7396 67.2117 20.4167 70 20.4167M70 20.4167C67.2117 20.4167 63.7437 22.0937 60.8883 23.8408C57.0762 26.1742 53.7512 29.2279 50.9687 32.7221C48.8046 35.4375 46.6667 38.675 46.6667 40.8333M70 20.4167H-1.90735e-06" stroke="white"/>
-                </svg>
-
-                <span class="projects__name serif">{p.title}</span>
-              </a>
-              <p class="projects__meta muted">{p.meta}</p>
+              <div class="projects__trigger">
+                <a class="projects__link" href={p.href} target="_blank" rel="noopener noreferrer">
+                  <svg class="projects__arrow" width="70" height="41" viewBox="0 0 70 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M46.6667 0C46.6667 2.16417 48.8046 5.39583 50.9687 8.10833C53.7512 11.6083 57.0762 14.6621 60.8883 16.9925C63.7467 18.7396 67.2117 20.4167 70 20.4167M70 20.4167C67.2117 20.4167 63.7437 22.0937 60.8883 23.8408C57.0762 26.1742 53.7512 29.2279 50.9687 32.7221C48.8046 35.4375 46.6667 38.675 46.6667 40.8333M70 20.4167H-1.90735e-06" stroke="white"/>
+                  </svg>
+                  <span class="projects__name serif">{p.title}</span>
+                </a>
+                <p class="projects__meta muted">{p.meta}</p>
+              </div>
             </li>
           ))
         }
@@ -69,7 +72,7 @@ const projects = [
       <div class="projects__stage" aria-hidden="true">
         <div class="projects__sticky">
           <div class="projects__card ph-media" data-parallax>
-            <img src={projects[0].preview} alt="" width="1200" height="900" loading="lazy" />
+            <video muted loop playsinline preload="auto"></video>
           </div>
         </div>
       </div>
@@ -87,10 +90,17 @@ const projects = [
   }
 
   .projects__wrap {
-    display: grid;
-    grid-template-columns: 1.1fr minmax(320px, 44%);
-    gap: var(--gutter);
-    align-items: start;
+    position: relative;
+  }
+
+  .projects__item:last-child {
+    padding-bottom: 50vh;
+  }
+
+  .projects__list {
+    width: 100%;
+    position: relative;
+    z-index: 1;
   }
 
   /* --- list --- */
@@ -99,9 +109,16 @@ const projects = [
     padding-block: clamp(2rem, 6vh, 4rem);
   }
 
+  .projects__trigger {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding-inline: var(--gutter);
+  }
+
   .projects__link {
     display: block;
     position: relative;
+    max-width: 540px;
   }
 
   .projects__arrow {
@@ -119,6 +136,7 @@ const projects = [
     letter-spacing: -0.01em;
     display: inline-block;
     width: calc(100% - 4rem);
+    max-width: 540px;
     color: var(--c-grey-dark);
     transition: padding-left 1.5s var(--ease-out-expo);
   }
@@ -143,28 +161,74 @@ const projects = [
     transform: translateY(0);
   }
 
-  /* --- sticky centered preview --- */
+  /* --- floating preview --- */
   .projects__stage {
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 4rem);
+    top: 0;
+    width: 45%;
     height: 100%;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .projects__sticky {
     position: sticky;
-    top: calc(50svh - 13vw);
+    top: calc(50vh - 20px);
+    transform: translateY(-50%);
   }
 
   .projects__card {
+    width: 100%;
     aspect-ratio: 16 / 10;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.4s ease;
     transform: rotate(-7deg);
     box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
     will-change: transform;
   }
 
+  .projects__card.is-visible {
+    opacity: 1;
+  }
+
+  .projects__card video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  .projects__card.video-active video {
+    object-fit: contain;
+    background: transparent;
+  }
+
+  .projects__card.video-active {
+    padding: 0;
+  }
+
+  .projects__card.poster-active video {
+    object-fit: cover;
+  }
+
   @media (max-width: 900px) {
     .projects__wrap {
-      grid-template-columns: 1fr;
+      /* single column on mobile */
+    }
+    .projects__item:last-child {
+      padding-bottom: clamp(2rem, 6vh, 4rem);
+    }
+    .projects__list {
+      width: 100%;
+    }
+    .projects__trigger {
+      width: 100%;
+      margin-left: 0;
+      padding-inline: 0;
     }
     .projects__stage {
       display: none;
@@ -186,41 +250,66 @@ const projects = [
 </style>
 
 <script>
-  import { onReady, gsap } from '../scripts/app';
+  import { onReady, gsap, reducedMotion } from '../scripts/app';
 
   onReady(() => {
     const wrap = document.querySelector<HTMLElement>('.projects__wrap');
     const items = gsap.utils.toArray<HTMLElement>('.projects__item');
+    const triggers = gsap.utils.toArray<HTMLElement>('.projects__trigger');
     const card = document.querySelector<HTMLElement>('.projects__card');
-    const img = card?.querySelector('img');
-    if (!wrap || !items.length || !card || !img) return;
+    const video = card?.querySelector('video');
+    if (!wrap || !items.length || !triggers.length || !card || !video) return;
 
-    let active = 0;
+    let active = -1;
+    let playTimeout: ReturnType<typeof setTimeout> | undefined;
 
-    // initialise first item arrow & colour
-    {
-      const a = items[active]?.querySelector<SVGSVGElement>('.projects__arrow');
-      const n = items[active]?.querySelector<HTMLElement>('.projects__name');
-      if (a) gsap.set(a, { opacity: 1, x: 0, yPercent: -50 });
-      if (n) gsap.set(n, { color: '#f2f0ec' });
+    function deactivateAll() {
+      clearTimeout(playTimeout);
+      if (active < 0) return;
+      const prev = active;
+      active = -1;
+
+      // start fade-out
+      card!.classList.remove('is-visible');
+
+      // reset items immediately (arrows, names, meta)
+      items.forEach(el => {
+        el.classList.remove('is-active');
+        const a = el.querySelector<SVGSVGElement>('.projects__arrow');
+        const n = el.querySelector<HTMLElement>('.projects__name');
+        if (a) {
+          gsap.killTweensOf(a);
+          gsap.set(a, { opacity: 0, x: -24, yPercent: -50 });
+        }
+        if (n) {
+          gsap.killTweensOf(n);
+          gsap.set(n, { clearProps: 'color' });
+        }
+      });
+
+      // wait for fade-out before cleaning video
+      setTimeout(() => {
+        if (active >= 0) return;
+        video!.pause();
+        video!.removeAttribute('src');
+        video!.load();
+        card!.classList.remove('video-active', 'poster-active');
+      }, 400);
     }
 
-    function setActive(index: number) {
+    function activate(index: number) {
       if (index === active) return;
-
       const prev = active;
       active = index;
 
-      // deactivate previous
-      const prevEl = items[prev];
-      {
+      if (prev >= 0) {
+        const prevEl = items[prev];
         const a = prevEl.querySelector<SVGSVGElement>('.projects__arrow');
         const n = prevEl.querySelector<HTMLElement>('.projects__name');
         if (a) gsap.to(a, { opacity: 0, x: -24, yPercent: -50, duration: 0.4, ease: 'expo.out', overwrite: 'auto' });
         if (n) gsap.to(n, { color: '#3a3a38', duration: 0.5, ease: 'expo.out', overwrite: 'auto' });
       }
 
-      // activate new
       const nextEl = items[index];
       {
         const a = nextEl.querySelector<SVGSVGElement>('.projects__arrow');
@@ -232,7 +321,28 @@ const projects = [
       items.forEach((el, i) => el.classList.toggle('is-active', i === index));
 
       const src = nextEl.dataset.preview;
-      if (src) img!.src = src;
+      const videoSrc = nextEl.dataset.video;
+
+      clearTimeout(playTimeout);
+      card!.classList.add('is-visible');
+
+      if (videoSrc && !reducedMotion) {
+        video!.onloadeddata = null;
+        card!.classList.remove('poster-active');
+        card!.classList.add('video-active');
+        video!.currentTime = 0;
+        video!.removeAttribute('poster');
+        video!.src = videoSrc;
+        playTimeout = setTimeout(() => video!.play(), 500);
+      } else {
+        card!.classList.remove('video-active');
+        card!.classList.add('poster-active');
+        if (src) video!.poster = src;
+        video!.pause();
+        video!.removeAttribute('src');
+        video!.load();
+        video!.currentTime = 0;
+      }
 
       gsap.to(card, {
         rotation: parseFloat(nextEl.dataset.tilt ?? '0'),
@@ -242,36 +352,36 @@ const projects = [
       });
     }
 
-    // the whole row — full width, image area included — reacts to hover:
-    // whichever item's vertical band contains the pointer becomes active.
-    // The pointer position is remembered and re-checked on scroll, so rows
-    // sliding under a *still* cursor also trigger the change.
-    let pointerY = -1;
+    // mouseenter on each trigger
+    triggers.forEach((el, i) => {
+      el.addEventListener('mouseenter', () => activate(i));
+      el.addEventListener('focusin', () => activate(i));
+    });
 
-    function hitTest() {
-      if (pointerY < 0) return;
+    // leave the whole section
+    wrap.addEventListener('mouseleave', deactivateAll);
+
+    // scroll: activate item closest to viewport center when no active item
+    window.addEventListener('scroll', () => {
+      const wr = wrap.getBoundingClientRect();
+      const cy = window.innerHeight / 2;
+      if (cy < wr.top || cy > wr.bottom) {
+        if (active >= 0) deactivateAll();
+        return;
+      }
+      if (active >= 0) return;
+      let best = -1;
+      let bestDist = Infinity;
       for (let i = 0; i < items.length; i++) {
         const r = items[i].getBoundingClientRect();
-        if (pointerY >= r.top && pointerY <= r.bottom) {
-          setActive(i);
-          return;
+        const mid = (r.top + r.bottom) / 2;
+        const dist = Math.abs(cy - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
         }
       }
-    }
-
-    window.addEventListener(
-      'pointermove',
-      (e) => {
-        pointerY = e.clientY;
-        hitTest();
-      },
-      { passive: true }
-    );
-
-    window.addEventListener('scroll', hitTest, { passive: true });
-
-    items.forEach((el, i) => {
-      el.addEventListener('focusin', () => setActive(i));
-    });
+      if (best >= 0) activate(best);
+    }, { passive: true });
   });
 </script>

@@ -9,19 +9,21 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const previews = ['/images/project1.webp', '/images/project2.webp', '/images/project3.webp', '/images/project4.webp', '/images/project5.webp'];
+const previews = ['/images/graphicdesign.webp', '/images/project2.webp', '/images/project3.webp', '/images/project4.webp', '/images/project5.webp'];
+const videoSrcs = ['', '/videos/services-video.mp4', '/videos/services-webdesign.mp4', '/videos/services-webdev.mp4', '/videos/services-3d.mp4'];
 
 const services = [1, 2, 3, 4, 5].map((n, i) => ({
   num: `0${n}`,
   title: t(`services.0${n}.title` as Parameters<typeof t>[0]),
   desc: t(`services.0${n}.desc` as Parameters<typeof t>[0]),
   img: previews[i],
+  video: videoSrcs[i],
 }));
 
 // REPLACE: real testimonials
 const testimonials = [
   { quote: t('services.testimonial.01'), name: 'Gustavo Marquez', role: 'Co-founder, Collie Valley', image: '/images/testimonials/gustavo.webp' },
-  { quote: t('services.testimonial.01'), name: 'Luis Uculmana', role: 'Software Engineer', image: '/images/testimonials/luis.webp' },
+  { quote: t('services.testimonial.02'), name: 'Luis Uculmana', role: 'Software Engineer', image: '/images/testimonials/luis.webp' },
   { quote: t('services.testimonial.01'), name: 'Gina Alarcón', role: 'Ops. Mgr, Orange Logistic', image: '/images/testimonials/gina-alarcon.webp' },
   { quote: t('services.testimonial.01'), name: 'Johanna Barrientos', role: 'Com. Mgr, Orange Logistic', image: '/images/testimonials/johanna-barrientos.webp' },
 ];
@@ -77,7 +79,7 @@ const testimonials = [
       <ol class="services__list">
         {
           services.map((s, i) => (
-            <li class="services__item" data-reveal data-reveal-delay={i * 0.05} data-img={s.img}>
+            <li class="services__item" data-reveal data-reveal-delay={i * 0.05} data-img={s.img} data-video={s.video || undefined}>
               <span class="services__num label muted">{s.num}</span>
               <div>
                 <h3 class="services__title">{s.title}</h3>
@@ -88,7 +90,10 @@ const testimonials = [
         }
       </ol>
 
-      <img class="services__float" src={services[0].img} alt="" />
+      <div class="services__float">
+        <video class="services__float-video" muted loop playsinline preload="auto"></video>
+        <img class="services__float-img" src={services[0].img} alt="" />
+      </div>
     </div>
   </div>
 </section>
@@ -251,12 +256,17 @@ const testimonials = [
     pointer-events: none;
     opacity: 0;
     width: 220px;
+    will-change: transform, opacity;
+  }
+
+  .services__float-img,
+  .services__float-video {
+    width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    will-change: transform, opacity;
   }
 
   @media (max-width: 900px) {
@@ -267,7 +277,9 @@ const testimonials = [
       position: static;
       order: 2;
     }
-    .services__float {
+    .services__float,
+    .services__float-img,
+    .services__float-video {
       display: none;
     }
   }
@@ -296,20 +308,23 @@ const testimonials = [
       });
     });
 
-    // floating image follows cursor over service items
+    // floating image/video follows cursor over service items
     const list = document.querySelector<HTMLElement>('.services__list');
-    const floatImg = document.querySelector<HTMLImageElement>('.services__float');
+    const float = document.querySelector<HTMLElement>('.services__float');
+    const floatImg = float?.querySelector<HTMLImageElement>('.services__float-img');
+    const floatVideo = float?.querySelector<HTMLVideoElement>('.services__float-video');
     const items = gsap.utils.toArray<HTMLElement>('.services__item');
-    if (!list || !floatImg || !items.length) return;
+    if (!list || !float || !floatImg || !floatVideo || !items.length) return;
 
     let mouseX = 0, mouseY = 0;
     let currentImg = '';
+    let currentVideo = '';
 
     function onMove(e: MouseEvent) {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      gsap.to(floatImg, {
+      gsap.to(float, {
         x: mouseX + 120,
         y: mouseY - 160,
         duration: 0.8,
@@ -319,21 +334,35 @@ const testimonials = [
     }
 
     function onEnter(this: HTMLElement, e: MouseEvent) {
-      const src = this.dataset.img;
-      if (!src) return;
+      const imgSrc = this.dataset.img;
+      const videoSrc = this.dataset.video;
+      if (!imgSrc) return;
 
-      // position instantly — no slide from (0,0)
-      gsap.set(floatImg, {
+      gsap.set(float, {
         x: e.clientX + 120,
         y: e.clientY - 160,
       });
 
-      if (src !== currentImg) {
-        currentImg = src;
-        floatImg!.src = src;
+      if (videoSrc) {
+        floatImg!.style.display = 'none';
+        floatVideo!.style.display = 'block';
+        if (videoSrc !== currentVideo) {
+          currentVideo = videoSrc;
+          floatVideo!.src = videoSrc;
+        }
+        floatVideo!.currentTime = 0;
+        floatVideo!.play().catch(() => {});
+      } else {
+        floatVideo!.style.display = 'none';
+        floatVideo!.pause();
+        floatImg!.style.display = 'block';
+        if (imgSrc !== currentImg) {
+          currentImg = imgSrc;
+          floatImg!.src = imgSrc;
+        }
       }
 
-      gsap.to(floatImg, {
+      gsap.to(float, {
         opacity: 1,
         scale: 1,
         duration: 0.4,
@@ -343,12 +372,15 @@ const testimonials = [
     }
 
     function onLeave(this: HTMLElement) {
-      gsap.to(floatImg, {
+      gsap.to(float, {
         opacity: 0,
         scale: 0.9,
         duration: 0.3,
         ease: 'power2.out',
         overwrite: 'auto',
+        onComplete: () => {
+          floatVideo!.pause();
+        },
       });
     }
 
