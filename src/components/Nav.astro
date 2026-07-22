@@ -99,6 +99,7 @@ const followLinks = [
   <a class="navpill__item" href="#process">{t('nav.process')}</a>
   <a class="navpill__item" href="#services">{t('nav.services')}</a>
   <span class="navpill__divider" aria-hidden="true"></span>
+  <a class="navpill__item navpill__item--call" href="https://cal.com/haroldom" target="_blank">{t('nav.bookCall')}</a>
   <a
     class="navpill__item navpill__item--lang"
     href={localizePath('/', otherLang)}
@@ -276,7 +277,10 @@ const followLinks = [
       bottom: 1rem;
       max-width: calc(100vw - 1.5rem);
       width: max-content;
-      overflow-x: auto;
+    }
+    .navpill__item:not(.navpill__item--chip):not(.navpill__item--lang):not(.navpill__item--call),
+    .navpill__divider {
+      display: none;
     }
     .navpill__item {
       padding: 0.55em 0.7em;
@@ -286,6 +290,12 @@ const followLinks = [
       grid-template-columns: 1fr 1fr;
       bottom: 4.6rem;
       padding: 1.6rem;
+    }
+  }
+
+  @media (min-width: 721px) {
+    .navpill__item--call {
+      display: none;
     }
   }
 

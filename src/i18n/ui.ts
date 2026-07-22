@@ -114,6 +114,8 @@ export const ui = {
         "services.testimonial.01":
             "Harold has demonstrated responsibility, commitment, and an excellent willingness to learn. He performed his duties efficiently, contributed technological solutions, and consistently maintained a proactive and professional attitude.",
         "services.testimonial.02": "Harold stands out for his maturity and resilience. Beyond his ability to learn quickly and his technical initiative in implementing tools, his dedication and team spirit added immense value to the comprehensive development of our ERP system.",
+        "services.testimonial.03": "Harold understood our vision from the very beginning. He transformed our ideas into a website that perfectly reflects Orange Logistic's identity and even exceeded our expectations. His attention to detail in both design and functionality made the entire process highly professional.",
+        "services.testimonial.04": "Working with Harold was a great experience. The final result was exactly what we envisioned: a modern design, an excellent color palette, and a website that truly represents our company's image. We are extremely satisfied with the outcome.",
 
         // achievements
         "achievements.label": "Recognition",
@@ -252,7 +254,8 @@ export const ui = {
         "services.testimonial.01":
             "Harold ha demostrado responsabilidad, compromiso y una excelente disposición para aprender. Cumplió sus funciones de manera eficiente, aportó soluciones tecnológicas y mantuvo siempre una actitud proactiva y profesional.",
         "services.testimonial.02": "Harold destaca por su madurez y capacidad de superación. Más allá de su rápido aprendizaje e iniciativa técnica al implementar herramientas, su dedicación y compañerismo aportaron un valor inmenso en la construcción integral de nuestro sistema ERP.",
-
+        "services.testimonial.03": "Harold entendió nuestra visión desde el primer momento. Supo transformar nuestras ideas en una página web que refleja perfectamente la esencia de Orange Logistic e incluso superó nuestras expectativas. Además, cuidó cada detalle del diseño y la funcionalidad, haciendo que todo el proceso fuera muy profesional.",
+        "services.testimonial.04": "Trabajar con Harold fue una excelente experiencia. El resultado fue exactamente lo que imaginábamos: un diseño moderno, una combinación de colores impecable y una página web que transmite la imagen de nuestra empresa. Estamos muy satisfechos con el resultado final.",
         // achievements
         "achievements.label": "Reconocimientos",
         "achievements.heading": "Logros.",

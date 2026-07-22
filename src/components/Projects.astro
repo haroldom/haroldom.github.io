@@ -47,13 +47,15 @@ const projects = [
       <ul class="projects__list">
         {
           projects.map((p, i) => (
-            <li
-              class:list={['projects__item']}
-              data-index={i}
-              data-preview={p.preview}
-              data-video={p.video || ''}
-              data-tilt={i % 2 === 0 ? -7 : 7}
-            >
+              <li
+                class:list={['projects__item']}
+                data-index={i}
+                data-preview={p.preview}
+                data-video={p.video || ''}
+                data-tilt={i % 2 === 0 ? -7 : 7}
+                data-reveal
+                data-reveal-delay={i * 0.08}
+              >
               <div class="projects__trigger">
                 <a class="projects__link" href={p.href} target="_blank" rel="noopener noreferrer">
                   <svg class="projects__arrow" width="70" height="41" viewBox="0 0 70 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,6 +64,15 @@ const projects = [
                   <span class="projects__name serif">{p.title}</span>
                 </a>
                 <p class="projects__meta muted">{p.meta}</p>
+                {
+                  p.video ? (
+                    <video class="projects__mobile-preview" muted loop playsinline autoplay preload="auto" poster={p.preview}>
+                      <source src={p.video} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img class="projects__mobile-preview" src={p.preview} alt="" loading="lazy" />
+                  )
+                }
               </div>
             </li>
           ))
@@ -215,6 +226,10 @@ const projects = [
     object-fit: cover;
   }
 
+  .projects__mobile-preview {
+    display: none;
+  }
+
   @media (max-width: 900px) {
     .projects__wrap {
       /* single column on mobile */
@@ -246,6 +261,14 @@ const projects = [
     .projects__arrow {
       display: none;
     }
+    .projects__mobile-preview {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
   }
 </style>
 
@@ -253,6 +276,9 @@ const projects = [
   import { onReady, gsap, reducedMotion } from '../scripts/app';
 
   onReady(() => {
+    // On mobile, skip hover/scroll card activation — inline previews + data-reveal handle it
+    if (window.innerWidth < 900) return;
+
     const wrap = document.querySelector<HTMLElement>('.projects__wrap');
     const items = gsap.utils.toArray<HTMLElement>('.projects__item');
     const triggers = gsap.utils.toArray<HTMLElement>('.projects__trigger');

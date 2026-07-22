@@ -24,8 +24,8 @@ const services = [1, 2, 3, 4, 5].map((n, i) => ({
 const testimonials = [
   { quote: t('services.testimonial.01'), name: 'Gustavo Marquez', role: 'Co-founder, Collie Valley', image: '/images/testimonials/gustavo.webp' },
   { quote: t('services.testimonial.02'), name: 'Luis Uculmana', role: 'Software Engineer', image: '/images/testimonials/luis.webp' },
-  { quote: t('services.testimonial.01'), name: 'Gina Alarcón', role: 'Ops. Mgr, Orange Logistic', image: '/images/testimonials/gina-alarcon.webp' },
-  { quote: t('services.testimonial.01'), name: 'Johanna Barrientos', role: 'Com. Mgr, Orange Logistic', image: '/images/testimonials/johanna-barrientos.webp' },
+  { quote: t('services.testimonial.03'), name: 'Johanna Barrientos', role: 'Com. Mgr, Orange Logistic', image: '/images/testimonials/johanna-barrientos.webp' },
+  { quote: t('services.testimonial.04'), name: 'Gina Alarcón', role: 'Ops. Mgr, Orange Logistic', image: '/images/testimonials/gina-alarcon.webp' },
 ];
 ---
 
@@ -84,6 +84,15 @@ const testimonials = [
               <div>
                 <h3 class="services__title">{s.title}</h3>
                 <p class="small muted">{s.desc}</p>
+                {
+                  s.video ? (
+                    <video class="services__mobile-media" muted loop playsinline autoplay preload="auto" poster={s.img}>
+                      <source src={s.video} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img class="services__mobile-media" src={s.img} alt="" loading="lazy" />
+                  )
+                }
               </div>
             </li>
           ))
@@ -269,6 +278,10 @@ const testimonials = [
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   }
 
+  .services__mobile-media {
+    display: none;
+  }
+
   @media (max-width: 900px) {
     .services__grid {
       grid-template-columns: 1fr;
@@ -276,11 +289,50 @@ const testimonials = [
     .services__rail {
       position: static;
       order: 2;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .services__loop {
+      animation: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .services__group[aria-hidden="true"] {
+      display: none;
+    }
+    .services__quote {
+      text-align: center;
+      max-width: 40ch;
+    }
+    .services__quote-by {
+      justify-content: center;
     }
     .services__float,
     .services__float-img,
     .services__float-video {
       display: none;
+    }
+    .services__mobile-media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .services__item {
+      grid-template-columns: 3rem 1fr;
+    }
+    .services__item:hover {
+      padding-left: 0;
+    }
+    .services__item:hover .services__num {
+      color: inherit;
     }
   }
 </style>
@@ -290,6 +342,9 @@ const testimonials = [
 
   onReady(() => {
     if (reducedMotion) return;
+
+    // On mobile, skip hover/float logic — inline media + data-reveal handle it
+    if (window.innerWidth < 900) return;
 
     // heading lines drift in alternating directions while scrolling
     const heading = document.querySelector<HTMLElement>('.services__heading');

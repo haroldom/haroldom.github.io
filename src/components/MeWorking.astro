@@ -157,6 +157,21 @@ const awards = [
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.6);
   }
+
+  @media (max-width: 900px) {
+    .mework__clip img {
+      margin-top: -4px;
+    }
+    .mework__laurels {
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-top: 4vh;
+      padding-bottom: 16vh;
+    }
+    .mework__award-img {
+      width: clamp(130px, 40vw, 200px) !important;
+    }
+  }
 </style>
 
 <script>
