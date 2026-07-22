@@ -1,0 +1,1 @@
+import{i as e,n as t,t as n}from"./app.BtEZBZ0Q.js";n(()=>{if(t)return;let n=document.querySelector(`.process__head`);n&&(e.to(`.process__heading-l1`,{xPercent:4,ease:`none`,scrollTrigger:{trigger:n,start:`top bottom`,end:`bottom top`,scrub:!0}}),e.to(`.process__heading-l2`,{xPercent:-5,ease:`none`,scrollTrigger:{trigger:n,start:`top bottom`,end:`bottom top`,scrub:!0}}))});

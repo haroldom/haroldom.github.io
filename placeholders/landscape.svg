@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <rect width="1280" height="720" fill="#232322"/>
+  <line x1="0" y1="0" x2="1280" y2="720" stroke="#3a3a38" stroke-width="1.5"/>
+  <line x1="1280" y1="0" x2="0" y2="720" stroke="#3a3a38" stroke-width="1.5"/>
+  <rect x="0.75" y="0.75" width="1278.5" height="718.5" fill="none" stroke="#3a3a38" stroke-width="1.5"/>
+  <text x="640" y="366" fill="#6b6b67" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="5" text-anchor="middle">REPLACE · IMAGE / VIDEO</text>
+</svg>

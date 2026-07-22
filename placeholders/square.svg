@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+  <rect width="600" height="600" fill="#232322"/>
+  <line x1="0" y1="0" x2="600" y2="600" stroke="#3a3a38" stroke-width="1.5"/>
+  <line x1="600" y1="0" x2="0" y2="600" stroke="#3a3a38" stroke-width="1.5"/>
+  <rect x="0.75" y="0.75" width="598.5" height="598.5" fill="none" stroke="#3a3a38" stroke-width="1.5"/>
+  <text x="300" y="304" fill="#6b6b67" font-family="Helvetica, Arial, sans-serif" font-size="20" letter-spacing="4" text-anchor="middle">REPLACE</text>
+</svg>
