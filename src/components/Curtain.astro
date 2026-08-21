@@ -76,7 +76,15 @@ const t = useTranslations(lang);
     clip-path: inset(50%);
   }
 
-  /* with reduced motion the beat adds nothing — skip it entirely */
+  @media (max-width: 720px) {
+    .curtain {
+      height: 360vh;
+    }
+    .curtain__svg {
+      height: 110%;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .curtain {
       display: none;

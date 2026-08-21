@@ -9,7 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const previews = ['/images/graphicdesign.webp', '/images/project2.webp', '/images/project3.webp', '/images/project4.webp', '/images/project5.webp'];
+const previews = ['/images/graphicdesign.webp', '/images/project2.webp', '/images/project3.webp', '/images/project4.webp'];
 const videoSrcs = ['', '/videos/services-video.mp4', '/videos/services-webdesign.mp4', '/videos/services-webdev.mp4', '/videos/services-3d.mp4'];
 
 const services = [1, 2, 3, 4, 5].map((n, i) => ({
@@ -285,6 +285,16 @@ const testimonials = [
   @media (max-width: 900px) {
     .services__grid {
       grid-template-columns: 1fr;
+    }
+    .services__heading {
+      font-size: clamp(2rem, 7vw, 3rem);
+    }
+    .services__heading span:nth-child(2),
+    .services__heading span:nth-child(3) {
+      margin-left: 0;
+    }
+    .services__item:first-child {
+      border-top: none;
     }
     .services__rail {
       position: static;

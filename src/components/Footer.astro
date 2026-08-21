@@ -318,10 +318,16 @@ const socials = [
       flex-direction: column;
       align-items: flex-start;
       gap: 2rem;
-      padding-bottom: 6rem; /* room for the fixed nav */
+      padding-bottom: 6rem;
     }
     .footer__legal {
       text-align: left;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
