@@ -125,7 +125,7 @@ const followLinks = [
     position: fixed;
     bottom: 1.4rem;
     left: 50%;
-    translate: -50% 0;
+    transform: translateX(-50%);
     z-index: 90;
     display: flex;
     align-items: center;
@@ -194,7 +194,7 @@ const followLinks = [
     position: fixed;
     bottom: 5.4rem;
     left: 50%;
-    translate: -50% 0;
+    transform: translate(-50%, 14px) scale(0.96);
     z-index: 89;
     width: min(720px, calc(100vw - 2rem));
     display: grid;
@@ -208,22 +208,19 @@ const followLinks = [
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), 0 20px 60px rgba(0, 0, 0, 0.4);
     transform-origin: 50% 100%;
     opacity: 0;
-    scale: 0.96;
-    transform: translateY(14px);
     pointer-events: none;
     visibility: hidden;
-    transition: opacity 0.45s var(--ease-out-expo), scale 0.45s var(--ease-out-expo),
-      transform 0.45s var(--ease-out-expo), visibility 0s linear 0.45s;
+    transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo),
+      visibility 0s linear 0.45s;
   }
 
   .menu-panel.is-open {
     opacity: 1;
-    scale: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0) scale(1);
     pointer-events: auto;
     visibility: visible;
-    transition: opacity 0.45s var(--ease-out-expo), scale 0.45s var(--ease-out-expo),
-      transform 0.45s var(--ease-out-expo), visibility 0s;
+    transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo),
+      visibility 0s;
   }
 
   .menu-panel__col ul {
